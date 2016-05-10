@@ -3,15 +3,18 @@ body {
 
 }
 
-h1,h2,h3,h4,h5,h6 {
-
+div.header {
+    padding-top: 2%;
 }
-
+div.header div.col-md-6 a img {
+    width:5%;
+    margin: auto;
+}
 div.row.img-circle {
     width: 18%;
 }
 div.top {
-    padding-top:8%;
+    padding-top:6%;
     padding-bottom: 8%;
     color:white;
 }
@@ -58,5 +61,9 @@ div.links div.col-md-3 p a{
 div.links div.col-md-3 p:hover a {
     opacity: 1;
     max-width: 150px;
+}
+
+div.footer {
+
 }
 
