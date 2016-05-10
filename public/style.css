@@ -49,6 +49,7 @@ div.links div.col-md-3 p a{
     color:white;
     max-width: 0;
     display: inline-block;
+    padding-top: 5%;
     text-decoration: none;
     transition: max-width 1s ease-out .1s, opacity 1s ease-out .1s, color;
 }
