@@ -5,3 +5,9 @@ body {
 h1,h2,h3,h4,h5,h6 {
     color:white;
 }
+.container-fluid {
+    padding-top:2%;
+}
+.row.img-circle {
+    width: 18%;
+}
