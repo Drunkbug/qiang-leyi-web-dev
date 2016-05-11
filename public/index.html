@@ -16,6 +16,11 @@
 
 </head>
 <body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+
 <div class="container-fluid">
     <div class="row">
 
@@ -23,43 +28,65 @@
     </div>
     <div class="row header">
         <div class="col-md-6">
-            <a href="#">
+            <a href="#home" data-toggle="tab">
                 <img src="imgs/homeicon.png" class="img center-block">
             </a>
         </div>
         <div class="col-md-6">
-            <a href="#">
+            <a href="#video" data-toggle="tab">
                 <img src="imgs/videoicon.png" class="img center-block">
             </a>
         </div>
 
     </div><!-- end row header-->
-    <div class="row top">
-        <img src="imgs/face.jpg" class="img-circle center-block">
-        <h1 class="text-center text-shift-left">HELLO,</h1>
-        <h2 class="text-center text-shift-right">I'M LEYI.</h2>
-    </div><!-- end row top-->
+    <div class="row content">
+        <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <img src="imgs/face.jpg" class="img-circle center-block">
+                <h1 class="text-center text-shift-left">HELLO,</h1>
+                <h2 class="text-center text-shift-right">I'M LEYI.</h2>
+            </div>
+            <div class="tab-pane" id="video">
+                <script>$('#video').load('#');</script>
+            </div>
+            <div class="tab-pane" id="project">
+                <script>$('#project').load('/project/index.html');</script>
+            </div>
+            <div class="tab-pane" id="assignment">
+                <script>$('#assignment').load('/assignment/index.html');</script>
+            </div>
+        </div><!--end tab-content-->
 
-    <div class="row links">
-        <div class="col-md-3">
-            <p class="lead"><img src="imgs/pjicon.png" class="img"><a href="project/index.html">&nbsp;Project</a></p>
-        </div>
-        <div class="col-md-3">
-            <p class="lead"><img src="imgs/asmicon.png" class="img"><a href="assignment/index.html">&nbsp;Assignment</a></p>
-        </div>
-        <div class="col-md-3">
-            <p class="lead"><img src="imgs/keyicon.png" class="img"><a href="test/index.html">&nbsp;MongoDB</a></p>
-        </div>
-        <div class="col-md-3">
-            <p class="lead"><img src="imgs/cloudicon.png" class="img">
-                <a href="https://github.com/Drunkbug/qiang-leyi-web-dev">&nbsp;Github</a>
-            </p>
-        </div>
-    </div><!--end row-->
+    </div><!-- end row top-->
 
     <div class="row footer">
 
+        <div class="tabbable" style="margin-bottom: 18px;">
+            <ul class="nav">
+                <li class="active"><a href="#tab1" data-toggle="tab">Request Audit</a></li>
+                <li class=""><img src="imgs/pjicon.png" class="img"><a href="#project" data-toggle="tab">&nbsp;Project</a></li>
+                <li class=""><img src="imgs/asmicon.png" class="img"><a href="#assignment" data-toggle="tab">&nbsp;Assignment</a></li>
+                <li class=""><img src="imgs/keyicon.png" class="img"><a href="#test" data-toggle="tab">&nbsp;MongoDB</a></li>
+                <li class=""><img src="imgs/cloudicon.png" class="img">
+                    <a href="https://github.com/Drunkbug/qiang-leyi-web-dev">&nbsp;Github</a></li>
+            </ul>
 
+        <!--<div class="row links tabbable">-->
+            <!--<div class=" active col-md-3">-->
+                <!--<p class="lead"><img src="imgs/pjicon.png" class="img"><a href="#project" data-toggle="tab">&nbsp;Project</a></p>-->
+            <!--</div>-->
+            <!--<div class="col-md-3">-->
+                <!--<p class="lead"><img src="imgs/asmicon.png" class="img"><a href="#assignment" data-toggle="tab">&nbsp;Assignment</a></p>-->
+            <!--</div>-->
+            <!--<div class="col-md-3">-->
+                <!--<p class="lead"><img src="imgs/keyicon.png" class="img"><a href="#test" data-toggle="tab">&nbsp;MongoDB</a></p>-->
+            <!--</div>-->
+            <!--<div class="col-md-3">-->
+                <!--<p class="lead"><img src="imgs/cloudicon.png" class="img">-->
+                    <!--<a href="https://github.com/Drunkbug/qiang-leyi-web-dev">&nbsp;Github</a>-->
+                <!--</p>-->
+            <!--</div>-->
+        <!--</div>&lt;!&ndash;end row&ndash;&gt;-->
     </div><!--end row footer-->
 </div><!--end container-->
 </body>

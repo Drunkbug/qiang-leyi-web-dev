@@ -1,5 +1,6 @@
 body {
     background-color: #31333E;
+    min-height: 700px;
 
 }
 
@@ -13,7 +14,7 @@ div.header div.col-md-6 a img {
 div.row.img-circle {
     width: 18%;
 }
-div.top {
+div.content {
     padding-top:6%;
     padding-bottom: 8%;
     color:white;
