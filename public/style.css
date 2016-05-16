@@ -1,7 +1,5 @@
 body {
     background-color: #31333E;
-    min-height: 700px;
-
 }
 
 div.header {
@@ -14,7 +12,7 @@ div.header div.col-md-6 a img {
 div.row.img-circle {
     width: 18%;
 }
-div.content {
+div.top {
     padding-top:6%;
     padding-bottom: 8%;
     color:white;
@@ -67,4 +65,3 @@ div.links div.col-md-3 p:hover a {
 div.footer {
 
 }
-
