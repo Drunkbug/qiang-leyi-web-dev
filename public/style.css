@@ -1,67 +1,66 @@
 body {
-    background-color: #31333E;
+    background-color: #617D8B;
 }
-
-div.header {
-    padding-top: 2%;
-}
-div.header div.col-md-6 a img {
-    width:5%;
-    margin: 8px auto;
-}
-div.row.img-circle {
-    width: 18%;
-}
-div.top {
-    padding-top:6%;
-    padding-bottom: 8%;
-    color:white;
-}
-div.links > div{
-
-    text-align: center;
-    display: flex;
-    flex-flow: column;
+.mdl-grid {
+    height:340px;
 
 }
-
-
-h1.text-shift-left {
-    margin-right:5%;
-}
-h2.text-shift-right {
-    margin-left:5%;
+#mdl-card__title__half {
+    height: 120px;
 }
 
-
-div.links div.col-md-3 p{
-    overflow: hidden;
-    list-style: none;
-    white-space:nowrap;
-    margin-right: 10px;
-    border-radius: 25px;
-    display: inline-block;
-    margin-top: auto;
-    margin-bottom: auto;
+#mdl-card__title__half2 {
+    height:120px;
 }
 
-div.links div.col-md-3 p a{
-    font-size:15px;
-    opacity: 0;
-    color:white;
-    max-width: 0;
-    display: inline-block;
-    padding-top: 5%;
-    text-decoration: none;
-    transition: max-width 1s ease-out .1s, opacity 1s ease-out .1s, color;
+#mdl-card__text__half {
+    height: 20px;
+    background-color: white;
 }
 
+#mdl-card__text__half2 {
+    height:20px;
+    background-color: white;
+}
+.col-transparent {
+    background-color: transparent;
+}
+.row1 {
+    height: 170px;
+    padding-bottom: 10px;
 
-div.links div.col-md-3 p:hover a {
-    opacity: 1;
-    max-width: 150px;
 }
 
-div.footer {
+.row2 {
+    height: 170px;
+}
+.blog-main {
+    max-width: 950px;
+}
+.mdl-card__title {
+    height:300px;
+}
+.my-face-img {
+    background:url('/imgs/face.jpg') center / cover;
+}
 
+.project-img {
+    background: url('/imgs/ic_filter_frames_white_48dp_2x.png') no-repeat center center;
+    background-color: #FD6D6F;
+}
+.video-img {
+    background: url('/imgs/ic_camera_alt_white_48dp_2x.png') no-repeat center center;
+    background-color: #5BE2D2;
+}
+.asm-img {
+    background: url('/imgs/ic_edit_white_48dp_2x.png') no-repeat center center;
+    background-color: #1BBDDD;
+}
+.comment-img {
+    background: url('/imgs/ic_tag_faces_white_48dp_2x.png') no-repeat center center;
+    background-color: #EEDD4B;
+}
+.git-img {
+    background: url('/imgs/ic_filter_drama_white_48dp_2x.png') no-repeat center center;
+    background-color:  #212121;
 }
