@@ -40,6 +40,27 @@ body {
 .mdl-card__title {
     height:300px;
 }
+.mdl-card__title:hover {
+    -webkit-animation: flash 1.5s;
+    animation: flash 1.5s;
+}
+
+@-webkit-keyframes flash {
+    0% {
+        opacity: .4;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes flash {
+    0% {
+        opacity: .4;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 .my-face-img {
     background:url('/imgs/face.jpg') center / cover;
 }
