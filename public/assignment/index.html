@@ -5,9 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
     <!-- my own style sheet-->
     <link rel="stylesheet" type="text/css" href="../style.css">
@@ -18,41 +19,31 @@
 
 </head>
 <body>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Assignment</a>
+        <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <a href="../index.html"><li class="mdl-menu__item">Home</li></a>
+            <a href="../project/index.html"><li class="mdl-menu__item">Project</li></a>
+            <a href="#"><li class="mdl-menu__item">Video</li></a>
+            <a href="../assignment/index.html"><li class="mdl-menu__item">Assignment</li></a>
+            <a href="../test/index.html"><li class="mdl-menu__item">Comments</li></a>
+        </ul>
 
-<div class="mdl-layout__container">
-    <div class="mdl-layout mdl-js-layout">
-        <div class="mdl-layout__content">
-            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                <header class="mdl-layout__header">
-                    <div class="mdl-layout__header-row">
-                        <span class="mdl-layout-title">Assignment</span>
-                        <!-- Add spacer, to align navigation to the right -->
-                        <div class="mdl-layout-spacer"></div>
-                        <!-- Right aligned menu below button -->
-                        <button id="demo-menu-lower-right"
-                                class="mdl-button mdl-js-button mdl-button--icon">
-                            <i class="material-icons">more_vert</i>
-                        </button>
-
-                        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                            for="demo-menu-lower-right">
-                            <a href="../index.html"><li class="mdl-menu__item">Home</li></a>
-                            <a href="../project/index.html"><li class="mdl-menu__item">Project</li></a>
-                            <a href="#"><li class="mdl-menu__item">Video</li></a>
-                            <a href="../assignment/index.html"><li class="mdl-menu__item">Assignment</li></a>
-                            <a href="../test/index.html"><li class="mdl-menu__item">Comments</li></a>
-
-                        </ul>
-                    </div>
-                </header>
-                <main class="mdl-layout__content">
-                    <div class="page-content"><!-- Your content goes here --></div>
-                </main>
-            </div>
-
-        </div><!-- end content-->
+        <ul class="side-nav" id="mobile">
+            <a href="../index.html"><li class="mdl-menu__item">Home</li></a>
+            <a href="../project/index.html"><li class="mdl-menu__item">Project</li></a>
+            <a href="#"><li class="mdl-menu__item">Video</li></a>
+            <a href="../assignment/index.html"><li class="mdl-menu__item">Assignment</li></a>
+            <a href="../test/index.html"><li class="mdl-menu__item">Comments</li></a>
+        </ul>
     </div>
-</div><!-- end container-->
-
+</nav>
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script src="../init.js"></script>
 </body>
 </html>

@@ -5,29 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
     <!-- my own style sheet-->
     <link rel="stylesheet" type="text/css" href="../style.css">
-
+    <link rel="stylesheet" href="style.css">
 
     <title>Test</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="app.js"></script>
 </head>
 <body>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <div class="container" ng-controller="TestController as model">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo">Comments</a>
+                <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <a href="../index.html"><li class="mdl-menu__item">Home</li></a>
+                    <a href="../project/index.html"><li class="mdl-menu__item">Project</li></a>
+                    <a href="#"><li class="mdl-menu__item">Video</li></a>
+                    <a href="../assignment/index.html"><li class="mdl-menu__item">Assignment</li></a>
+                    <a href="../test/index.html"><li class="mdl-menu__item">Comments</li></a>
+                </ul>
 
-        <h1>Messages</h1>
+                <ul class="side-nav" id="mobile">
+                    <a href="../index.html"><li class="mdl-menu__item">Home</li></a>
+                    <a href="../project/index.html"><li class="mdl-menu__item">Project</li></a>
+                    <a href="#"><li class="mdl-menu__item">Video</li></a>
+                    <a href="../assignment/index.html"><li class="mdl-menu__item">Assignment</li></a>
+                    <a href="../test/index.html"><li class="mdl-menu__item">Comments</li></a>
+                </ul>
+            </div>
+        </nav>
 
+        <div class="container" ng-controller="TestController as model">
         <div ng-show="model.error"
              class="alert alert-danger">
             {{model.error}}
@@ -47,8 +61,8 @@
                     </td>
                     <td>
                         <button ng-click="model.createMessage(model.message)"
-                                class="btn btn-primary pull-right">
-                            <span class="glyphicon glyphicon-plus"></span>
+                                class="btn-floating btn-large waves-effect waves-light">
+                            <i class="material-icons">add</i>
                         </button>
                     </td>
                 </tr>
@@ -60,13 +74,20 @@
                     </td>
                     <td>
                         <button ng-click="model.deleteMessage(message)"
-                                class="btn btn-danger pull-right">
-                            <span class="glyphicon glyphicon-remove"></span>
+                                class="btn-floating btn-large waves-effect waves-light red">
+                            <i class="material-icons">delete</i>
                         </button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="../init.js"></script>
 </body>
 </html>

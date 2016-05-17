@@ -1,11 +1,7 @@
 body {
     background-color: white;
 }
-.mdl-layout__header-row {
-    background-color: #FD6D6F;
-}
 
-ul a {
-    display: block;
-    text-decoration: none;
+nav {
+    background-color: #FD6D6F;
 }
