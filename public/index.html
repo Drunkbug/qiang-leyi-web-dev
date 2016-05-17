@@ -5,9 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+
 
     <!-- my own style sheet-->
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -16,79 +20,83 @@
 
 </head>
 <body>
-
-<div class="mdl-layout__container">
-    <div class="mdl-layout mdl-js-layout">
-        <div class="mdl-layout__content">
-            <div class="blog-main mdl-grid">
-                <div class="mdl-card mdl-cell__mypic mdl-cell mdl-cell--4-col">
-                    <a href="/imgs/face.jpg">
-                    <div class="mdl-card__title my-face-img">
-
-                    </div>
-                    </a>
-                    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-                        <strong>HOWDY!</strong>
-                    </div>
-                </div>
-                <div class="mdl-card mdl-cell mdl-cell--8-col">
-                    <a href="/project/index.html">
-                    <div class="mdl-card__title project-img">
-
-                    </div>
-                    </a>
-                    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-                        <strong>Project</strong>
-                    </div>
-                </div>
-                <div class="mdl-card mdl-cell mdl-cell--6-col">
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m4 l4">
+                <div class="card">
                     <a href="#">
-                    <div class="mdl-card__title video-img">
-
-                    </div>
+                        <div class="card-image my-face-img">
+                        </div>
                     </a>
-                    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-                        <strong>Video</strong>
+                    <div class="card-content">
+                        <p class="left-align">HOWDY!</p>
                     </div>
                 </div>
-                <div class="mdl-card mdl-cell mdl-cell--4-col">
-                    <a href="/assignment/index.html">
-                    <div class="mdl-card__title asm-img">
-
-                    </div>
+                
+            </div>
+            <div class="col s12 m8 l8">
+                <div class="card">
+                    <a href="/project/index.html">
+                        <div class="card-image project-img">
+                        </div>
                     </a>
-                    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-                        <strong>Assignment</strong>
+                    <div class="card-content">
+                        <p>My Project</p>
                     </div>
                 </div>
-                <div class="mdl-card mdl-cell mdl-cell--2-col col-transparent">
-                    <div class="row1">
-                        <a href="/test/index.html">
-                        <div class="mdl-card__title comment-img" id="mdl-card__title__half">
-
-                        </div>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <div class="card">
+                        <a href="#">
+                            <div class="card-image video-img"></div>
                         </a>
-                        <div class="mdl-card__supporting-text meta mdl-color-text--grey-600" id="mdl-card__text__half">
-                            <strong>Comment</strong>
+                        <div class="card-content">
+                            <p>Video</p>
                         </div>
-                    </div>
-                    <div class="row2">
-                        <a href="https://github.com/Drunkbug/qiang-leyi-web-dev">
-                        <div class="mdl-card__title git-img" id="mdl-card__title__half2">
 
-                        </div>
-                        </a>
-                        <div class="mdl-card__supporting-text meta mdl-color-text--grey-600" id="mdl-card__text__half2">
-                            <strong>GitHub</strong>
-                        </div>
                     </div>
                 </div>
+                <div class="col s12 m4 l4">
+                    <div class="card">
+                        <a href="/assignment/index.html">
+                            <div class="card-image asm-img"></div>
+                        </a>
+                        <div class="card-content">
+                            <p>Assignment</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col s12 m2 l2">
+                    <div class="subrow">
+                        <div class="card" id="card-top">
+                            <a href="/test/index.html">
+                                <div class="card-image comment-img"></div>
+                            </a>
+                            <div class="card-content">
+                                <p>Comments</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subrow">
+                        <div class="card" id="card-top2">
+                            <a href="https://github.com/Drunkbug/qiang-leyi-web-dev">
+                                <div class="card-image git-img"></div>
+                            </a>
+                            <div class="card-content">
+                                <p>GitHub</p>
+                            </div>
+                        </div>
+                    </div>
 
-            </div><!-- end grid-->
+                </div>
 
-        </div><!-- end content-->
-    </div>
-</div><!-- end container-->
+            </div>
+        </div>
 
+</main>
 </body>
 </html>
