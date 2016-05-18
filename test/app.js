@@ -22,7 +22,7 @@ module.exports = function(app)
     });
 
     var TestModel = mongoose.model("TestModel", TestSchema);
-
+    // find through all messages
     function findAllMessages(req, res) {
         TestModel
             .find()
@@ -35,7 +35,7 @@ module.exports = function(app)
                 }
             );
     }
-
+    // to create a new message
     function createMessage(req, res) {
         TestModel
             .create(req.body)
@@ -48,7 +48,7 @@ module.exports = function(app)
                 }
             );
     }
-
+    // to delete a message
     function deleteMessage(req, res) {
         TestModel
             .remove({_id: req.params.id})
