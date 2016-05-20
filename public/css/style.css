@@ -63,26 +63,26 @@ body {
     }
 }
 .my-face-img {
-    background:url('/imgs/face.jpg') center / cover;
+    background:url('../imgs/face.jpg') center / cover;
 }
 
 .project-img {
-    background: url('/imgs/ic_filter_frames_white_48dp_2x.png') no-repeat center center;
+    background: url('../imgs/ic_filter_frames_white_48dp_2x.png') no-repeat center center;
     background-color: #FD6D6F;
 }
 .video-img {
-    background: url('/imgs/ic_camera_alt_white_48dp_2x.png') no-repeat center center;
+    background: url('../imgs/ic_camera_alt_white_48dp_2x.png') no-repeat center center;
     background-color: #5BE2D2;
 }
 .asm-img {
-    background: url('/imgs/ic_edit_white_48dp_2x.png') no-repeat center center;
+    background: url('../imgs/ic_edit_white_48dp_2x.png') no-repeat center center;
     background-color: #1BBDDD;
 }
 .comment-img {
-    background: url('/imgs/ic_tag_faces_white_48dp_2x.png') no-repeat center center;
+    background: url('../imgs/ic_tag_faces_white_48dp_2x.png') no-repeat center center;
     background-color: #EEDD4B;
 }
 .git-img {
-    background: url('/imgs/ic_filter_drama_white_48dp_2x.png') no-repeat center center;
+    background: url('../imgs/ic_filter_drama_white_48dp_2x.png') no-repeat center center;
     background-color:  #212121;
 }

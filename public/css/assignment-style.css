@@ -1,0 +1,38 @@
+body {
+    background-color: white;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+}
+nav {
+    background-color: #1BBDDD;
+}
+footer.page-footer {
+    margin: 0px;
+    padding: 20px;
+}
+footer div.container{
+    width: 100%;
+}
+
+footer div.container div.row{
+    margin: auto 0px;
+}
+
+footer a {
+    color:white;
+}
+
+li a {}
+.btn {
+    display: block;
+    width: 100%;
+}
+
+.nav-wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+}
