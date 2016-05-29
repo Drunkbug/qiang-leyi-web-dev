@@ -1,21 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
-    <link rel="stylesheet" href="../../css/assignment-style.css">
-
-
-    <title>Websites</title>
-</head>
-<body>
 <nav>
     <div class="nav-wrapper teal lighten-2">
         <a href="#" class="brand-logo left">
@@ -29,6 +11,7 @@
 </nav>
 <main>
     <div class="container">
+        {{model.websites}}
         <ul class="collection with-header">
             <li class="collection-item"><div><a href="../page/page-list.html">Blogging App</a><a href="website-edit.html" class="secondary-content"><i class="material-icons">settings</i></a></div></li>
             <li class="collection-item"><div><a href="../page/page-list.html">Address Book App</a><a href="website-edit.html" class="secondary-content"><i class="material-icons">settings</i></a></div></li>
@@ -49,10 +32,3 @@
         </div>
     </div>
 </footer>
-<!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-<script src="../../js/init.js"></script>
-</body>
-</html>
