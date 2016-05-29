@@ -11,38 +11,42 @@
     <!-- font awesome-->
     <script src="https://use.fontawesome.com/d8fb1a6e24.js"></script>
 
+    <link rel="stylesheet" href="../../css/assignment-style.css">
 
-    <link rel="stylesheet" href="../css/assignment-style.css">
 
-
-    <title>Widget Chooser</title>
+    <title>New Page</title>
 </head>
 <body>
 <nav>
     <div class="nav-wrapper teal lighten-2">
-        <a href="widget-list.html" class="brand-logo left brand-icon ">
+        <a href="page-list.html" class="brand-logo left brand-icon ">
             <i class="fa fa-chevron-left" aria-hidden="true"></i>
         </a>
         <a href="#" class="brand-logo left brand-title">
-            Choose Widget
+            New Page
+        </a>
+        <a href="page-list.html">
+            <i class="material-icons right">done</i>
         </a>
 
     </div>
 </nav>
 <main>
-    <div class="container">
-        <div class="collection">
-            <a href="widget-heading.html" class="collection-item">Header</a>
-            <a href="#!" class="collection-item">Label</a>
-            <a href="#!" class="collection-item">HTML</a>
-            <a href="widget-paragraph.html" class="collection-item">Text Input</a>
-            <a href="#!" class="collection-item">Link</a>
-            <a href="#!" class="collection-item">Button</a>
-            <a href="widget-image.html" class="collection-item">Image</a>
-            <a href="widget-youtube.html" class="collection-item">Youtube</a>
-            <a href="#!" class="collection-item">Data Table</a>
-            <a href="#!" class="collection-item">Repeater</a>
-        </div>
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Page Name" id="first_name" type="text" class="validate">
+                    <label for="first_name">Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Page Title" id="title" type="text" class="validate">
+                    <label for="first_name">Title</label>
+                </div>
+            </div>
+        </form>
     </div>
 </main>
 
@@ -50,7 +54,7 @@
     <div class="container">
         <div class="row">
             <div class="col s12">
-                <a href="user/profile.html">
+                <a href="../user/profile.view.client.html">
                     <i class="material-icons right">perm_identity</i>
                 </a>
             </div>
@@ -61,6 +65,6 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-<script src="../js/init.js"></script>
+<script src="../../js/init.js"></script>
 </body>
 </html>

@@ -1,0 +1,25 @@
+<div class="container">
+    {{model.error}}
+    <div class="row">
+        <h4>Login</h4>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <input ng-model="username" type="text" placeholder="username">
+        </div>
+        <div class="row">
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <input ng-model="password" type="password" placeholder="password">
+        </div>
+    </div>
+    <div class="row">
+        <a ng-click="model.login(username, password)" href="#/profile" class="waves-effect waves-light btn teal lighten-2">Login</a>
+    </div>
+    <div class="row">
+        <a href="#/register" class="waves-effect waves-light btn red lighten-1"
+           onclick="Materialize.toast('Cannot register right now', 1000)">Register</a>
+    </div>
+</div>

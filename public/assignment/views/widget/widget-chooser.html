@@ -8,53 +8,40 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- font awesome-->
+    <script src="https://use.fontawesome.com/d8fb1a6e24.js"></script>
 
 
     <link rel="stylesheet" href="../../css/assignment-style.css">
 
 
-    <title>Profile</title>
+    <title>Widget Chooser</title>
 </head>
 <body>
 <nav>
     <div class="nav-wrapper teal lighten-2">
-        <a href="#" class="brand-logo left">
-            Profile
+        <a href="widget-list.html" class="brand-logo left brand-icon ">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
         </a>
-        <a href="#" onclick="Materialize.toast('Profile Saved', 1000)">
-            <i class="material-icons right">done</i>
+        <a href="#" class="brand-logo left brand-title">
+            Choose Widget
         </a>
 
     </div>
 </nav>
 <main>
     <div class="container">
-        <div class="row">
-            <div class="input-field col s12">
-                <input type="text" placeholder="username">
-            </div>
-            <div class="row">
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input type="email" class="validate" placeholder="email">
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                <input type="text" placeholder="First Name">
-            </div>
-            <div class="input-field col s6">
-                <input type="text" placeholder="Last Name">
-            </div>
-        </div>
-
-        <div class="row">
-            <a href="../website-list.html" class="waves-effect waves-light btn teal lighten-2">Applications</a>
-        </div>
-        <div class="row">
-            <a href="login.html" class="waves-effect waves-light btn red lighten-1">Logout</a>
+        <div class="collection">
+            <a href="widget-heading.html" class="collection-item">Header</a>
+            <a href="#!" class="collection-item">Label</a>
+            <a href="#!" class="collection-item">HTML</a>
+            <a href="widget-paragraph.html" class="collection-item">Text Input</a>
+            <a href="#!" class="collection-item">Link</a>
+            <a href="#!" class="collection-item">Button</a>
+            <a href="widget-image.html" class="collection-item">Image</a>
+            <a href="widget-youtube.html" class="collection-item">Youtube</a>
+            <a href="#!" class="collection-item">Data Table</a>
+            <a href="#!" class="collection-item">Repeater</a>
         </div>
     </div>
 </main>
@@ -63,7 +50,7 @@
     <div class="container">
         <div class="row">
             <div class="col s12">
-                <a href="profile.html">
+                <a href="../user/profile.view.client.html">
                     <i class="material-icons right">perm_identity</i>
                 </a>
             </div>

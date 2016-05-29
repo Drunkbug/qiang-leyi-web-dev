@@ -1,59 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="WebAppMaker">
 <head>
-    <meta charset="UTF-8" ng-app="WebAppMaker">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
     <!-- my own style sheet-->
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-
     <link rel="stylesheet" type="text/css" href="../css/assignment-style.css">
-
     <title>Leyi's Homepage</title>
 
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+    <script src="../js/init.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="views/user/user.controller.client.js"></script>
 </head>
 <body>
-<nav>
-    <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Assignment</a>
-        <a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-            <a href="../index.html"><li class="mdl-menu__item">Home</li></a>
-            <a href="../project/index.html"><li class="mdl-menu__item">Project</li></a>
-            <a href="#"><li class="mdl-menu__item">Video</li></a>
-            <a href="../assignment/index.html"><li class="mdl-menu__item">Assignment</li></a>
-            <a href="../test/index.html"><li class="mdl-menu__item">Comments</li></a>
-        </ul>
+<!--<nav>-->
+    <!--<div class="nav-wrapper">-->
+        <!--<a href="#!" class="brand-logo">Assignment</a>-->
+        <!--<a href="#" data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>-->
+        <!--<ul class="right hide-on-med-and-down">-->
+            <!--<a href="../index.html"><li class="mdl-menu__item">Home</li></a>-->
+            <!--<a href="../project/index.html"><li class="mdl-menu__item">Project</li></a>-->
+            <!--<a href="#"><li class="mdl-menu__item">Video</li></a>-->
+            <!--<a href="../assignment/index.html"><li class="mdl-menu__item">Assignment</li></a>-->
+            <!--<a href="../test/index.html"><li class="mdl-menu__item">Comments</li></a>-->
+        <!--</ul>-->
 
-        <ul class="side-nav" id="mobile">
-            <a href="../index.html"><li class="mdl-menu__item">Home</li></a>
-            <a href="../project/index.html"><li class="mdl-menu__item">Project</li></a>
-            <a href="#"><li class="mdl-menu__item">Video</li></a>
-            <a href="../assignment/index.html"><li class="mdl-menu__item">Assignment</li></a>
-            <a href="../test/index.html"><li class="mdl-menu__item">Comments</li></a>
-        </ul>
+        <!--<ul class="side-nav" id="mobile">-->
+            <!--<a href="../index.html"><li class="mdl-menu__item">Home</li></a>-->
+            <!--<a href="../project/index.html"><li class="mdl-menu__item">Project</li></a>-->
+            <!--<a href="#"><li class="mdl-menu__item">Video</li></a>-->
+            <!--<a href="../assignment/index.html"><li class="mdl-menu__item">Assignment</li></a>-->
+            <!--<a href="../test/index.html"><li class="mdl-menu__item">Comments</li></a>-->
+        <!--</ul>-->
 
-    </div>
-</nav>
+    <!--</div>-->
+<!--</nav>-->
 
-<main>
-    <div class="container">
-        <p><a href="user/login.html">Login Here</a></p>
-        
-    </div>
-</main>
-<!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-<script src="../js/init.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-<script src="app.js"></script>
+<div ng-view></div>
+
 </body>
 </html>

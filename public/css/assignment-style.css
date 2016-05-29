@@ -7,6 +7,7 @@ body {
 main {
     flex: 1 0 auto;
     padding-top: 70px;
+    margin-bottom: 70px;
 }
 nav {
     background-color: #1BBDDD;
@@ -18,6 +19,9 @@ nav {
 footer.page-footer {
     margin: 0px;
     padding: 20px;
+    position: fixed;
+    bottom:0;
+    width: 100%;
 }
 footer div.container{
     width: 100%;

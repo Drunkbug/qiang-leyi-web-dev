@@ -11,21 +11,21 @@
     <!-- font awesome-->
     <script src="https://use.fontawesome.com/d8fb1a6e24.js"></script>
 
-    <link rel="stylesheet" href="../css/assignment-style.css">
+    <link rel="stylesheet" href="../../css/assignment-style.css">
 
 
-    <title>New Page</title>
+    <title>Edit Widget</title>
 </head>
 <body>
 <nav>
     <div class="nav-wrapper teal lighten-2">
-        <a href="page-list.html" class="brand-logo left brand-icon ">
+        <a href="widget-list.html" class="brand-logo left brand-icon ">
             <i class="fa fa-chevron-left" aria-hidden="true"></i>
         </a>
         <a href="#" class="brand-logo left brand-title">
-            New Page
+            Edit Widget
         </a>
-        <a href="page-list.html">
+        <a href="widget-list.html">
             <i class="material-icons right">done</i>
         </a>
 
@@ -36,14 +36,41 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <input placeholder="Page Name" id="first_name" type="text" class="validate">
+                    <input  id="first_name" type="text" class="validate">
                     <label for="first_name">Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input placeholder="Page Title" id="title" type="text" class="validate">
-                    <label for="first_name">Title</label>
+                    <input  id="text" type="text" class="validate">
+                    <label for="text">Text</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input  id="URL" type="text" class="validate">
+                    <label for="URL">URL</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <!-- Dropdown Trigger -->
+                    <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Choose Width</a>
+
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="#!">50%</a></li>
+                        <li><a href="#!">60%</a></li>
+                        <li><a href="#!">70%</a></li>
+                        <li><a href="#!">80%</a></li>
+                        <li><a href="#!">90%</a></li>
+                        <li><a href="#!">100%</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <a href="widget-list.html" class="waves-effect waves-light btn red lighten-1">Delete</a>
                 </div>
             </div>
         </form>
@@ -54,7 +81,7 @@
     <div class="container">
         <div class="row">
             <div class="col s12">
-                <a href="user/profile.html">
+                <a href="../user/profile.view.client.html">
                     <i class="material-icons right">perm_identity</i>
                 </a>
             </div>
@@ -65,6 +92,6 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-<script src="../js/init.js"></script>
+<script src="../../js/init.js"></script>
 </body>
 </html>
