@@ -4,7 +4,7 @@
         <a href="#" class="brand-logo left">
             Profile
         </a>
-        <a href="#" onclick="Materialize.toast('Profile Saved', 1000)">
+        <a ng-click="model.updateUser()" onclick="Materialize.toast('Profile Saved', 1000)">
             <i class="material-icons right">done</i>
         </a>
 
@@ -14,22 +14,26 @@
     <div class="container">
         <div class="row">
             <div class="input-field col s12">
-                <input type="text" placeholder="username">
+                <input ng-model="model.user.username"
+                       type="text" placeholder="username">
             </div>
             <div class="row">
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input type="email" class="validate" placeholder="email">
+                <input ng-model="model.user.email"
+                        type="email" class="validate" placeholder="email">
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6">
-                <input type="text" placeholder="First Name">
+                <input ng-model="model.user.firstName"
+                        type="text" placeholder="First Name">
             </div>
             <div class="input-field col s6">
-                <input type="text" placeholder="Last Name">
+                <input ng-model="model.user.lastName"
+                        type="text" placeholder="Last Name">
             </div>
         </div>
 
