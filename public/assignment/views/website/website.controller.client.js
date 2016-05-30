@@ -25,7 +25,7 @@
             if(result === true) {
                 Materialize.toast("Success", 1000);
             } else {
-                Materialize.toast("User Not Found", 1000);
+                Materialize.toast("Website Not Found", 1000);
             }
         }
 

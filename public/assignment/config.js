@@ -44,7 +44,21 @@
 
             })
             // page routes
-
+            .when("/user/:uid/website/:wid/page",{
+                templateUrl:"views/page/page-list.view.client.html",
+                controller:"PageListController",
+                controllerAs:"model"
+            })
+            .when("/user/:uid/website/:wid/page/new",{
+                templateUrl:"views/page/page-new.view.client.html",
+                controller:"NewPageController",
+                controllerAs:"model"
+            })
+            .when("/user/:uid/website/:wid/page/:pid",{
+                templateUrl:"views/page/page-edit.view.client.html",
+                controller:"EditPageController",
+                controllerAs:"model"
+            })
             // widget routes
             .when("/user/:uid/website/:wid/page/:pid/widget", {
                 templateUrl:"views/widget/widget-list.view.client.html",
@@ -57,9 +71,9 @@
             .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
                 templateUrl:"widget-edit.view.client.html"
             })
-            // .otherwise({
-            //     redirectTo:"/login"
-            // })
+            .otherwise({
+                redirectTo:"/login"
+            })
             ;
     }
 })();
