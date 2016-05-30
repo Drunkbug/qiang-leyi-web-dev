@@ -27,7 +27,6 @@ footer.page-footer {
 footer div.container{
     width: 100%;
 }
-
 footer div.container div.row{
     margin: auto 0px;
 }
@@ -57,7 +56,7 @@ li a {
 
 .brand-icon {
     margin-left: 0;
-    padding-left:0 ;
+    padding-left:0;
 }
 nav .brand-logo {
     font-size: 1.5rem;

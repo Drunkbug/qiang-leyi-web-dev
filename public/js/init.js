@@ -7,4 +7,8 @@
         $('.button-collapse').sideNav();
 
     }); // end of document ready
+
+    $(document).ready(function() {
+        Materialize.updateTextFields();
+    });
 })(jQuery); // end of jQuery name space

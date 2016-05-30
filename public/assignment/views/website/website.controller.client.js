@@ -4,14 +4,29 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("WebsiteListController", WebsiteListController);
+        .controller("WebsiteListController", WebsiteListController)
+        .controller("EditWebsiteController", EditWebsiteController);
+
+    function EditWebsiteController($routeParams, WebsiteService) {
+        var vm = this;
+        vm.uid = $routeParams.uid;
+        vm.websiteId = $routeParams.websiteId;
+
+        function init() {
+            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+        }
+        init();
+    }
     
     
     function WebsiteListController($routeParams, WebsiteService) {
         var vm = this;
-        var uid = $routeParams.uid;
-        vm.websites = WebsiteService.findWebsitesForUser(uid);
+        function init() {
+            var uid = $routeParams.uid;
+            vm.websites = WebsiteService.findWebsitesForUser(uid);
+        }
 
+        init();
 
 
     }

@@ -17,11 +17,19 @@
 
     function WebsiteService() {
         var api = {
-            findWebsitesForUser: findWebsitesForUser
+            findWebsitesForUser: findWebsitesForUser,
+            findWebsiteById:findWebsiteById
         };
         return api;
 
-
+        function findWebsiteById(websiteId) {
+            for (var i in websites) {
+                if(websites[i]._id === websiteId) {
+                    return websites[i];
+                }
+            }
+            return null;
+        }
         function findWebsitesForUser(userId) {
             var result = [];
             for (var i in websites) {
