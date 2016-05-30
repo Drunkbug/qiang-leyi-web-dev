@@ -4,9 +4,9 @@
             <i class="fa fa-chevron-left" aria-hidden="true"></i>
         </a>
         <a href="" class="brand-logo left brand-title">
-            Edit Websites
+            New Websites
         </a>
-        <a ng-click="model.updateWebsite()">
+        <a ng-click="model.createWebsite(name, description)">
             <i class="material-icons right">done</i>
         </a>
 
@@ -17,20 +17,14 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <input ng-model="model.website.name" placeholder="name" id="first_name" type="text" class="validate">
-                    <label  class = "active" for="first_name">Application Name</label>
+                    <input ng-model="name" placeholder="name" id="first_name" type="text" class="validate">
+                    <label class="active" for="first_name">Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea ng-model="model.website.description" id="textarea1" class="materialize-textarea" placeholder="description">
-                    </textarea>
-                    <label for="textarea1" class="active">Application Description</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <a href="#/user/{{model.uid}}/website" ng-click="model.deleteWebsite()" class="waves-effect waves-light btn red lighten-1">Delete</a>
+                    <textarea ng-model="description" id="textarea1" class="materialize-textarea" placeholder="description"></textarea>
+                    <label class="active" for="textarea1">Description</label>
                 </div>
             </div>
         </form>
@@ -41,9 +35,6 @@
     <div class="container">
         <div class="row">
             <div class="col s12">
-                <a>
-                    <i class="fa fa-share left" aria-hidden="true"></i>
-                </a>
                 <a href="#/profile/{{model.uid}}">
                     <i class="material-icons right">perm_identity</i>
                 </a>
