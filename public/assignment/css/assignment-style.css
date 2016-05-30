@@ -95,3 +95,7 @@ li.widget-list{
 .right-top-icons .icon-reorder {
     color:#4db6ac;
 }
+
+p.pwd-fail {
+    color:red;
+}

@@ -5,23 +5,28 @@
     </div>
     <div class="row">
         <div class="input-field col s12">
-            <input type="text" placeholder="username">
+            <input type="text" ng-model="username" placeholder="username">
         </div>
         <div class="row">
         </div>
     </div>
     <div class="row">
         <div class="input-field col s12">
-            <input type="password" placeholder="password">
+            <input type="password" ng-model="pwd" placeholder="password">
         </div>
     </div>
     <div class="row">
         <div class="input-field col s12">
-            <input type="password" placeholder="confirm password">
+            <input type="password" ng-model="cpwd" placeholder="confirm password">
         </div>
     </div>
     <div class="row">
-        <a href="#/profile" class="waves-effect waves-light btn teal lighten-2">Register</a>
+        <p class="pwd-fail" ng-if="!(pwd===cpwd)">password not match</p>
+    </div>
+    <div class="row">
+        <button  ng-disabled="(!(pwd===cpwd))||(pwd==null)||(cpwd==null)"
+                 ng-click="model.checkDupUser(username, pwd)"
+                 class="waves-effect waves-light btn teal lighten-2">Register</button>
     </div>
     <div class="row">
         <a class="waves-effect waves-light btn red lighten-1" href="#/login">Cancel</a>
