@@ -88,8 +88,10 @@ li.widget-list{
     right: 0px;
     top:0px;
     background-color: white;
+    z-index: 1000;
 }
 
-.right-top-icons .icon-setting {
+.right-top-icons .icon-setting,
+.right-top-icons .icon-reorder {
     color:#4db6ac;
 }

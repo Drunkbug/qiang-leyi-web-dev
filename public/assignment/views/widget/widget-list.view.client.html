@@ -18,12 +18,14 @@
         <ul ng-repeat="widget in model.widgets"
             ng-switch="widget.widgetType"
             class="collection with-header widget-components">
+
+            <div class="right-top-icons">
+                <a href="widget-heading.html"><i class="material-icons icon-setting">settings</i></a>
+                <a href=""><i class="material-icons icon-reorder">reorder</i></a>
+            </div>
+
             <li ng-switch-when="HEADER" class="collection-header widget-header widget-list">
                 <div class="widget-content">
-                    <div class="right-top-icons">
-                        <a href="widget-heading.html"><i class="material-icons icon-setting">settings</i></a>
-                        <a href=""><i class="material-icons">reorder</i></a>
-                    </div>
                     <div ng-switch="widget.size">
                         <h1 ng-switch-when="1">{{widget.text}}</h1>
                         <h2 ng-switch-when="2">{{widget.text}}</h2>
@@ -34,66 +36,23 @@
                     </div>
                 </div>
             </li>
-            <li ng-switch-default>
+            <li ng-switch-when="IMAGE" class="collection-header widget-header widget-list">
                 <div class="widget-content">
-                    <div class="right-top-icons">
-                        <a href="widget-heading.html"><i class="material-icons icon-setting">settings</i></a>
-                        <a href=""><i class="material-icons">reorder</i></a>
-                    </div>
+                    <img ng-src="{{widget.url}}" width="{{widget.width}}" alt="">
                 </div>
-                {{widget}}
             </li>
-            <!--<li class="collection-header widget-header widget-list">-->
-                <!--<div class="widget-content">-->
-                    <!--<h5>blahblahblah</h5>-->
-                    <!--<div class="right-top-icons">-->
-                        <!--<a href="widget-heading.html"><i class="material-icons icon-setting">settings</i></a>-->
-                        <!--<a href=""><i class="material-icons">reorder</i></a>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</li>-->
-            <!--<li class="collection-item widget-list">-->
-                <!--<div class="widget-content">-->
-                    <!--<img class="responsive-img"-->
-                         <!--src="https://i.kinja-img.com/gawker-media/image/upload/rm5oylc48nyyfxhu9cve.JPG" alt="">-->
-                    <!--<div class="right-top-icons">-->
-                        <!--<a href="widget-image.html"><i class="material-icons icon-setting">settings</i></a>-->
-                        <!--<a href=""><i class="material-icons">reorder</i></a>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</li>-->
-            <!--<li class="collection-item widget-list">-->
-                <!--<div class="widget-content">-->
-                    <!--<p>Google launched <a href="https://maps.googleblog.com/2016/01/do-i-stay-or-do-i-go-now-google-maps.html" rel="noopener" target="_blank">Driving Mode</a> earlier this year for Android but it’s kind of tricky to find: in Google Maps, choose <strong>Start driving</strong> from the app menu or make use of the 1x1 widget (under Maps). Your screen fills up with your current position and nearby traffic conditions.</p>-->
-                    <!--<div class="right-top-icons">-->
-                        <!--<a href="widget-paragraph.html"><i class="material-icons icon-setting">settings</i></a>-->
-                        <!--<a href=""><i class="material-icons">reorder</i></a>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</li>-->
-            <!--<li class="collection-item widget-list">-->
-                <!--<div class="widget-content">-->
-                    <!--<div class="video-container">-->
-                        <!--<iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0"-->
-                                <!--frameborder="0" allowfullscreen="">-->
-
-                        <!--</iframe>-->
-                    <!--</div>-->
-                    <!--<div class="right-top-icons">-->
-                        <!--<a href="widget-youtube.html"><i class="material-icons icon-setting">settings</i></a>-->
-                        <!--<a href=""><i class="material-icons">reorder</i></a>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</li>-->
-            <!--<li class="collection-item widget-list">-->
-                <!--<div class="widget-content">-->
-                    <!--<p>Google launched <a href="https://maps.googleblog.com/2016/01/do-i-stay-or-do-i-go-now-google-maps.html" rel="noopener" target="_blank">Driving Mode</a> earlier this year for Android but it’s kind of tricky to find: in Google Maps, choose <strong>Start driving</strong> from the app menu or make use of the 1x1 widget (under Maps). Your screen fills up with your current position and nearby traffic conditions.</p>-->
-                    <!--<div class="right-top-icons">-->
-                        <!--<a href="widget-paragraph.html"><i class="material-icons icon-setting">settings</i></a>-->
-                        <!--<a href=""><i class="material-icons">reorder</i></a>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</li>-->
+            <li ng-switch-when="HTML" class="collection-header widget-header widget-list">
+                <div class="widget-content" ng-bind-html="model.getTrustedHtml(widget)">
+                </div>
+            </li>
+            <li ng-switch-when="YOUTUBE" class="collection-header widget-header widget-list">
+                <iframe width="{{widget.width}}" height="auto" ng-src="{{model.getTrustedUrl(widget)}}" frameborder="0" allowfullscreen></iframe>
+            </li>
+            <li ng-switch-default class="collection-header widget-header widget-list">
+                <div class="widget-content">
+                    {{widget}}
+                </div>
+            </li>
         </ul>
     </div>
 </main>
