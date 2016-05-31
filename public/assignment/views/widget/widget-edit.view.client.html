@@ -1,12 +1,12 @@
 <nav>
     <div class="nav-wrapper teal lighten-2">
-        <a ng-click="model.deleteWidget()" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="brand-logo left brand-icon ">
+        <a ng-click="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="brand-logo left brand-icon ">
             <i class="fa fa-chevron-left" aria-hidden="true"></i>
         </a>
         <a href="" class="brand-logo left brand-title">
             Edit Widget
         </a>
-        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}"
+        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"
         ng-click="model.updateWidget()">
             <i class="material-icons right">done</i>
         </a>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <a ng-click="model.deleteWidget()" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="waves-effect waves-light btn red lighten-1">Delete</a>
+                        <a ng-click="model.deleteWidget()" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="waves-effect waves-light btn red lighten-1">Delete</a>
                     </div>
                 </div>
             </form>
@@ -56,20 +56,20 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input  id="name" type="text" class="validate">
+                        <input  ng-model="model.widget.name" id="name" type="text" class="validate">
                         <label class="active" for="first_name">Name</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input  id="text1" type="text" class="validate">
+                        <input  ng-model="model.widget.text" id="text1" type="text" class="validate">
                         <label class="active" for="text">Text</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input  id="URL1" type="text" class="validate">
-                        <label for="URL">URL</label>
+                        <input  ng-model="model.widget.url" id="URL1" type="text" class="validate">
+                        <label class="active" for="URL">URL</label>
                     </div>
                 </div>
                 <div class="row">
@@ -103,7 +103,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <a ng-click="model.deleteWidget()" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="waves-effect waves-light btn red lighten-1">Delete</a>
+                        <a ng-click="model.deleteWidget()" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="waves-effect waves-light btn red lighten-1">Delete</a>
                     </div>
                 </div>
             </form>
@@ -114,20 +114,20 @@
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input  id="first_name2" type="text" class="validate">
+                        <input  ng-model="model.widget.name" id="first_name2" type="text" class="validate">
                         <label class="active" for="first_name">Name</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input  id="text" type="text" class="validate">
+                        <input  ng-model="model.widget.text" id="text" type="text" class="validate">
                         <label class="active" for="text">Text</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input  id="URL" type="text" class="validate">
-                        <label for="URL">URL</label>
+                        <input  ng-model="model.widget.url" id="URL" type="text" class="validate">
+                        <label class="active" for="URL">URL</label>
                     </div>
                 </div>
                 <div class="row">
@@ -148,7 +148,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <a ng-click="model.deleteWidget()" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new" class="waves-effect waves-light btn red lighten-1">Delete</a>
+                        <a ng-click="model.deleteWidget()" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="waves-effect waves-light btn red lighten-1">Delete</a>
                     </div>
                 </div>
             </form>

@@ -73,6 +73,7 @@
         vm.updateWidget = updateWidget;
         function init() {
             vm.widget=WidgetService.findWidgetById(vm.wgid);
+            vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
             console.log(vm.widget)
         }
         init();
@@ -88,6 +89,7 @@
             } else {
                 Materialize.toast("Widget Not Found", 1000);
             }
+            console.log(vm.widgets)
         }
     }
 })();
