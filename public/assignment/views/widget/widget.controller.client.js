@@ -2,9 +2,6 @@
  * Created by leyiqiang on 5/30/16.
  */
 (function () {
-    $(document).ready(function() {
-        $('select').material_select();
-    });
     angular
         .module("WebAppMaker")
         .controller("WidgetListController", WidgetListController)
@@ -60,6 +57,7 @@
             };
             WidgetService.createWidget(vm.pid, newWidget);
             $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+            return newWidget;
         }
     }
 
@@ -74,7 +72,7 @@
         function init() {
             vm.widget=WidgetService.findWidgetById(vm.wgid);
             vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
-            console.log(vm.widget)
+            console.log(vm.widget);
         }
         init();
 

@@ -1,6 +1,6 @@
 <nav>
     <div class="nav-wrapper teal lighten-2">
-        <a ng-click="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="brand-logo left brand-icon ">
+        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="brand-logo left brand-icon ">
             <i class="fa fa-chevron-left" aria-hidden="true"></i>
         </a>
         <a href="" class="brand-logo left brand-title">
@@ -32,7 +32,7 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <select>
+                        <select id="header-select">
                             <option value="" disabled selected>Choose Size</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -42,6 +42,7 @@
                             <option value="6">6</option>
                         </select>
                     </div>
+
                 </div>
                 <div class="row">
                     <div class="input-field col s12">

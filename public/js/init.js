@@ -9,6 +9,8 @@
     }); // end of document ready
     $(document).ready(function() {
         Materialize.updateTextFields();
+        $('select').material_select();
+        console.log("passed");
 
     });
 
