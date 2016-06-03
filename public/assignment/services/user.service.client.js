@@ -5,14 +5,7 @@
     angular
         .module("WebAppMaker")
         .factory("UserService", UserService);
-    function UserService() {
-        var users = [
-            {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
-            {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
-            {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
-        ];
-
+    function UserService($http) {
         //
         // app.get("/allusers/:username", function(req,res) {
         //     var username = req.params['username'];
@@ -57,24 +50,14 @@
             return null;
         }
         function findUserByUsernameAndPassword(username, password) {
-            for (var i in users) {
-                if (users[i].username === username && users[i].password === password) {
-                    flag = true;
-                    return users[i];
-                }
-            }
-            return null;
+            var url = "http://localhost:3000/api/user?username="+username+"&password="+password;
+            return $http.get(url);
         }
 
 
         function findUserById(id) {
-            for(var i in users) {
-                console.log("aaa"+users[i]._id)
-                if(users[i]._id == id) {
-                    return users[i];
-                }
-            }
-            return null;
+            var url = "/api/user/"+id;
+            return $http.get(url);
         }
 
         function updateUser(id, newUser) {

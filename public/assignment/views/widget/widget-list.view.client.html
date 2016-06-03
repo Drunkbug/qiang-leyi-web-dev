@@ -39,7 +39,7 @@
             </li>
             <li ng-switch-when="IMAGE" class="collection-header widget-header widget-list">
                 <div class="widget-content">
-                    <img ng-src="{{widget.url}}" width="100%" alt="">
+                    <img ng-src="{{widget.url}}" width="{{widget.width}}%" alt="">
                 </div>
             </li>
             <li ng-switch-when="HTML" class="collection-header widget-header widget-list">
@@ -47,7 +47,7 @@
                 </div>
             </li>
             <li ng-switch-when="YOUTUBE" class="collection-header widget-header widget-list">
-                <iframe width="100%" height="auto" ng-src="{{model.getTrustedUrl(widget)}}" frameborder="0" allowfullscreen></iframe>
+                <iframe width="{{widget.width}}%" height="auto" ng-src="{{model.getTrustedUrl(widget)}}" frameborder="0" allowfullscreen></iframe>
             </li>
             <li ng-switch-default class="collection-header widget-header widget-list">
                 <div class="widget-content">

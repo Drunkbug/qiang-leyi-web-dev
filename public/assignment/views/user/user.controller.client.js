@@ -14,7 +14,11 @@
         vm.updateUser = updateUser;
         var id = $routeParams["id"];
         function init() {
-            vm.user = UserService.findUserById(id);
+            UserService
+                .findUserById(id)
+                .then(function (res) {
+                    vm.user = res.data;
+                });
         }
         init();
 
@@ -33,13 +37,18 @@
         var vm = this;
         vm.login =  Login;
         function Login(username, password) {
-            var user = UserService.findUserByUsernameAndPassword(username,password);
-            if (user) {
-                var id = user._id;
-                $location.url("/profile/"+id);
-            } else {
-                Materialize.toast("User Not Found", 1000);
-            }
+            UserService
+                .findUserByUsernameAndPassword(username,password)
+                .then(function (res) {
+                    var user = res.data;
+                    if (user) {
+                        var id = user._id;
+                        $location.url("/profile/"+id);
+                    } else {
+                        Materialize.toast("User Not Found", 1000);
+                    }
+                });
+
         }
     }
 
