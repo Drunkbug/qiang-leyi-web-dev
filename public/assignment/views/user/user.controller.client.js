@@ -7,7 +7,7 @@
         .controller("LoginController", LoginController)
         .controller("ProfileController", ProfileController)
         .controller("RegisterController", RegisterController);
-
+    
 
     function ProfileController($routeParams, UserService) {
         var vm = this;
@@ -24,12 +24,23 @@
 
 
         function updateUser() {
-            var result = UserService.updateUser(vm.user._id, vm.user);
-            if(result === true) {
-                Materialize.toast("Success", 1000);
-            } else {
-                Materialize.toast("User Not Found", 1000);
-            }
+            UserService
+                .updateUser(vm.user._id, vm.user)
+                .then(function(res){
+                    if(res.status === 200) {
+                        Materialize.toast("Success", 1000);
+                    } else {
+                        Materialize.toast("User Not Found", 1000);
+                    }
+                });
+        }
+
+        function deleteUser() {
+            UserService
+                .deleteUser(vm.user._id)
+                .then(function (res) {
+                    
+                });
         }
     }
     function LoginController($location, UserService) {
@@ -48,7 +59,6 @@
                         Materialize.toast("User Not Found", 1000);
                     }
                 });
-
         }
     }
 
@@ -56,23 +66,30 @@
         var vm = this;
         vm.checkDupUser = checkDupUser;
         function checkDupUser(username, password){
-            var user = UserService.findUserByUsername(username);
-            if(user || username == null ) {
-                console.log("test");
-                $location.url("/register/");
-                Materialize.toast("Illegal username", 1000);
-                return true;
-            } else {
-                var newUser =  {
-                    _id:(new Date()).getTime(),
-                    username:username,
-                    password:password,
-                    firstname:"",
-                    lastName:""
-                };
-                UserService.createUser(newUser);
-                $location.url("/profile/"+newUser._id);
-            }
+            UserService
+                .findUserByUsername(username)
+                .then(function (res){
+                    var user = res.data;
+                    if(user != "" || username == null || username=="" ) {
+                        $location.url("/register/");
+                        Materialize.toast("Illegal username", 1000);
+                    } else {
+                        var newUser =  {
+                            _id:(new Date()).getTime(),
+                            username:username,
+                            password:password,
+                            firstname:"",
+                            lastName:""
+                        };
+                        UserService
+                            .createUser(newUser)
+                            .then(function(res) {
+                                $location.url("/profile/"+newUser._id);
+                            });
+
+                    }
+                });
+
         }
     }
 })();

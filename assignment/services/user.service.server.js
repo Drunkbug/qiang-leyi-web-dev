@@ -10,7 +10,9 @@ module.exports = function(app) {
     ];
     app.get("/api/user",getUsers);
     app.get("/api/user/:userId",findUserById);
-
+    app.post("/api/user",createUser);
+    app.put("/api/user/:userId", updateUser);
+    app.delete("/api/user/:userId", deleteUser);
 
     function getUsers(req, res) {
         var username = req.query["username"];
@@ -18,9 +20,9 @@ module.exports = function(app) {
         if(username && password) {
             findUserByCredentials(username, password, res);
         } else if (username) {
-            findUserByUsername(username);
+            findUserByUsername(username, res);
         } else {
-            res.send(users);
+            res.send(null);
         }
     }
 
@@ -29,12 +31,12 @@ module.exports = function(app) {
         var flag = false;
         for(var u in users) {
             if (users[u].username === username && users[u].password === password) {
-                res.send(users[u]);
                 flag = true;
+                res.send(users[u]);
             }
         }
         if(!flag) {
-            res.send({});
+            res.send(null);
         }
 
     }
@@ -42,13 +44,13 @@ module.exports = function(app) {
     function findUserByUsername(username, res) {
         var flag = false;
         for(var u in users) {
-            if (users[u].username === username) {
-                res.send(users[u]);
+            if (users[u].username == username) {
                 flag = true;
+                res.send(users[u]);
             }
         }
         if(!flag) {
-            res.send({});
+            res.send(null);
         }
 
     }
@@ -57,13 +59,50 @@ module.exports = function(app) {
         var userId = req.params.userId;
         var flag = false;
         for (var i in users) {
-            if(userId === users[i]._id) {
+            if(userId == users[i]._id) {
                 res.send(users[i]);
-                flag = true;
+                flag = 1;
             }
         }
         if(!flag) {
-            res.send({});
+            res.send(null);
         }
+    }
+
+    function createUser(req, res) {
+        var user = req.body.user;
+        users.push(user);
+        res.send(user);
+    }
+
+
+    function updateUser(req, res) {
+        var id = req.body.id;
+        var newUser = req.body.newUser;
+        var flag = false;
+        for (var i in users) {
+            if(users[i]._id == id) {
+                users[i].firstName = newUser.firstName;
+                users[i].lastName = newUser.lastName;
+                flag = true;
+                res.sendStatus(200);
+
+            }
+        }
+        if(!flag) {
+            res.sendStatus(400);
+        }
+
+    }
+
+    function deleteUser(req, res) {
+        var id = req.params.userId;
+        for (var i in users) {
+            if (users[i].id === id) {
+                users.splice(i,1);
+                res.sendStatus(200);
+            }
+        }
+        res.sendStatus(400);
     }
 };

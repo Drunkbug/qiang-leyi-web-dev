@@ -16,17 +16,25 @@
         vm.deleteWebsite = deleteWebsite;
 
         function init() {
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+            WebsiteService
+                .findWebsiteById(vm.websiteId)
+                .then(function (res) {
+                    vm.website = res.data;
+                });
         }
         init();
  
         function updateWebsite() {
-            var result = WebsiteService.updateWebsite(vm.websiteId, vm.website);
-            if(result === true) {
-                Materialize.toast("Success", 1000);
-            } else {
-                Materialize.toast("Website Not Found", 1000);
-            }
+            WebsiteService
+                .updateWebsite(vm.websiteId, vm.website)
+                .then(function (res) {
+                    var result = res.status;
+                    if(result === 200) {
+                        Materialize.toast("Success", 1000);
+                    } else {
+                        Materialize.toast("Website Not Found", 1000);
+                    }
+                });
         }
 
         function deleteWebsite() {
@@ -41,7 +49,11 @@
 
         function init() {
             var uid = vm.uid;
-            vm.websites = WebsiteService.findWebsitesForUser(uid);
+            WebsiteService
+                .findWebsitesForUser(uid)
+                .then(function (res) {
+                    vm.websites = res.data;
+                });
         }
 
         init();
@@ -52,7 +64,11 @@
         vm.uid = $routeParams.uid;
         vm.createWebsite  = createWebsite;
         function init() {
-            vm.websites = WebsiteService.findWebsitesForUser(vm.uid);
+            WebsiteService
+                .findWebsitesForUser(vm.uid)
+                .then(function (res) {
+                    vm.websites = res.data;
+                });
         }
         init();
 
@@ -63,8 +79,11 @@
                 developerId: vm.uid,
                 description: description
             };
-            WebsiteService.createWebsite(vm.uid, newWebsite);
-            Materialize.toast("Success", 1000);
+            WebsiteService
+                .createWebsite(vm.uid, newWebsite)
+                .then(function (res) {
+                    Materialize.toast("Success", 1000);
+                });
         }
         
     }

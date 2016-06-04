@@ -13,4 +13,4 @@
     });
 
 
-})(jQuery); // end {of jQuery name space
+})(jQuery); // end of jQuery name space

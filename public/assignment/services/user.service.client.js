@@ -6,17 +6,6 @@
         .module("WebAppMaker")
         .factory("UserService", UserService);
     function UserService($http) {
-        //
-        // app.get("/allusers/:username", function(req,res) {
-        //     var username = req.params['username'];
-        //     for(var i in users) {
-        //         if (users[i].username === username) {
-        //             res.send(users[i]);
-        //         }
-        //     }
-        //     //req.send(users)
-        // });
-
         var api = {
             createUser: createUser,
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
@@ -28,26 +17,21 @@
         return api;
 
         function createUser(user) {
-            users.push(user);
+            var url = "http://localhost:3000/api/user";
+            var data = {
+                user: user
+            };
+
+            return $http.post(url, data);
         }
         function deleteUser(id) {
-            for (var i in users) {
-                if (users[i].id === id) {
-                    users.splice(i,1);
-                    return true;
-                }
-            }
-            return false;
+            var url = "/api/user/"+id;
+            return $http.delete(url);
         }
 
         function findUserByUsername(username) {
-            for (var i in users) {
-                if (users[i].username === username) {
-                    flag = true;
-                    return users[i];
-                }
-            }
-            return null;
+            var url = "http://localhost:3000/api/user?username="+username;
+            return $http.get(url);
         }
         function findUserByUsernameAndPassword(username, password) {
             var url = "http://localhost:3000/api/user?username="+username+"&password="+password;
@@ -61,14 +45,12 @@
         }
 
         function updateUser(id, newUser) {
-            for (var i in users) {
-                if(users[i]._id === id) {
-                    users[i].firstName = newUser.firstName;
-                    users[i].lastName = newUser.lastName;
-                    return true;
-                }
-            }
-            return false;
+            var url = "/api/user/"+id;
+            var data =  {
+                id:id,
+                newUser:newUser
+            };
+            return $http.put(url, data);
         }
     }
 })();
