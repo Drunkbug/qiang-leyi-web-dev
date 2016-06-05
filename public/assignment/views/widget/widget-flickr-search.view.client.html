@@ -29,10 +29,9 @@
         <div class="row">
             <div ng-repeat="photo in model.photos.photo">
                 <div class="col s4">
-                    <a ng-click="model.addFlikrUrl()"
+                    <a ng-click="model.addFlikrUrl(photo)"
                        href="">
                         <img width="100%"
-                             ng-model =
                              ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"
                              alt="">
                     </a>

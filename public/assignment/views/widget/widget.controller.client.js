@@ -146,9 +146,8 @@
                 })
         }
 
-        function addFlikrUrl(flikrUrl) {
-            console.log(vm.widget)
-            vm.widget.url  = flikrUrl;
+        function addFlikrUrl(photo) {
+            vm.widget.url  = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server+"/" + photo.id + "_" + photo.secret + "_q.jpg";
             WidgetService
                 .updateWidget(vm.wgid, vm.widget)
                 .then(function (res) {
