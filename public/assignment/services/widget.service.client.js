@@ -5,8 +5,8 @@
     angular
         .module("WebAppMaker")
         .factory("WidgetService", WidgetService);
-    
-    function WidgetService() {
+
+    function WidgetService($http) {
         var api = {
             findWidgetsByPageId: findWidgetsByPageId,
             findWidgetById:findWidgetById,
@@ -17,47 +17,35 @@
         return api;
 
         function findWidgetById(widgetId) {
-            for (var i in widgets) {
-                if(widgets[i]._id == widgetId) {
-                    return widgets[i];
-                }
-            }
-            return null;
+            var url = "/api/widget/"+widgetId;
+            return $http.get(url);
         }
         function findWidgetsByPageId(pageId) {
-            var result = [];
-            for (var i in widgets) {
-                if(widgets[i].pageId == pageId) {
-                    result.push(widgets[i]);
-                }
-            }
-            return result;
+            var url = "/api/page/"+pageId+"/widget";
+            return $http.get(url);
         }
 
         function createWidget(pageId, widget) {
-            widget.pageId = pageId;
-            widgets.push(widget);
-
+            var url = "/api/page/"+pageId+"/widget";
+            var data = {
+                pageId:pageId,
+                widget:widget
+            };
+            return $http.post(url, data);
         }
 
         function updateWidget(widgetId, widget) {
-            for (var i in widgets) {
-                if(widgets[i]._id == widgetId) {
-                    widgets[i] = widget;
-                    return true;
-                }
-            }
-            return false;
+            var url ="/api/widget/"+widgetId;
+            var data = {
+                widgetId:widgetId,
+                widget:widget
+            };
+            return $http.put(url, data);
         }
 
         function deleteWidget(widgetId) {
-            for (var i in widgets) {
-                if(widgets[i]._id == widgetId) {
-                    widgets.splice(i,1);
-                    return true;
-                }
-            }
-            return false;
+            var url ="/api/widget/"+widgetId;
+            return $http.delete(url);
         }
     }
 })();

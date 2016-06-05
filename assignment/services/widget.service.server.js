@@ -20,20 +20,80 @@ module.exports = function (app) {
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
     app.post("/api/page/:pageId/widget", createWidget);
     app.get("/api/page/:pageId/widget", findWidgetsByPageId);
+    app.get("/api/widget/:widgetId", findWidgetById);
+    app.put("/api/widget/:widgetId", updateWidget);
+    app.delete("/api/widget/:widgetId", deleteWidget);
 
-    function createWidget() {}
-    function findWidgetsByPageId() {}
     function uploadImage(req, res) {
-        // var widgetId      = req.body.widgetId;
-        // var width         = req.body.width;
-        // var myFile        = req.file;
-        //
-        // var originalname  = myFile.originalname; // file name on user's computer
-        // var filename      = myFile.filename;     // new file name in upload folder
-        // var path          = myFile.path;         // full path of uploaded file
-        // var destination   = myFile.destination;  // folder where file is saved to
-        // var size          = myFile.size;
-        // var mimetype      = myFile.mimetype;
-        // res.send(200);
+        var widgetId      = req.body.widgetId;
+        var width         = req.body.width;
+        var myFile        = req.file;
+
+        var originalname  = myFile.originalname; // file name on user's computer
+        var filename      = myFile.filename;     // new file name in upload folder
+        var path          = myFile.path;         // full path of uploaded file
+        var destination   = myFile.destination;  // folder where file is saved to
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+        res.sendStatus(200);
+    }
+
+    function createWidget(req, res) {
+        var pageId = req.body.pageId;
+        var widget = req.body.widget;
+        widget.pageId = pageId;
+        widgets.push(widget);
+    }
+    function findWidgetsByPageId(req, res) {
+        var pageId = req.params.pageId;
+        var result = [];
+        for (var i in widgets) {
+            if(widgets[i].pageId == pageId) {
+                result.push(widgets[i]);
+            }
+        }
+        res.send(result);
+    }
+    function findWidgetById(req, res) {
+        var widgetId = req.params.widgetId;
+        var flag = false;
+        for (var i in widgets) {
+            if(widgets[i]._id == widgetId) {
+                res.send(widgets[i]);
+                flag = true;
+            }
+        }
+        if(!flag) {
+            res.send(null);
+        }
+    }
+    function updateWidget(req, res) {
+        var widgetId = req.body.widgetId;
+        var widget = req.body.widget;
+        var flag = false;
+        for (var i in widgets) {
+            if(widgets[i]._id == widgetId) {
+                widgets[i] = widget;
+                flag = true;
+                res.sendStatus(200);
+            }
+        }
+        if(!flag) {
+            res.sendStatus(400);
+        }
+    }
+    function deleteWidget(req, res) {
+        var widgetId = req.params.widgetId;
+        var flag = false;
+        for (var i in widgets) {
+            if(widgets[i]._id == widgetId) {
+                widgets.splice(i,1);
+                flag = true;
+                res.sendStatus(200);
+            }
+        }
+        if(!flag) {
+            res.sendStatus(400);
+        }
     }
 };

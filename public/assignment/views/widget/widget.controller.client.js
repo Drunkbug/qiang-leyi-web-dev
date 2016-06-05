@@ -18,8 +18,13 @@
         vm.pid = $routeParams.pid;
         vm.wgid = $routeParams.wgid;
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
+            WidgetService
+                .findWidgetsByPageId(vm.pid)
+                .then(function (res) {
+                    vm.widgets = res.data;
+                });
         }
+
         init();
 
         function getTrustedHtml(widget) {
@@ -29,8 +34,8 @@
 
         function getTrustedUrl(widget) {
             var urlParts = widget.url.split("/");
-            var id = urlParts[urlParts.length-1];
-            var url = "https://www.youtube.com/embed/"+id;
+            var id = urlParts[urlParts.length - 1];
+            var url = "https://www.youtube.com/embed/" + id;
             return $sce.trustAsResourceUrl(url);
         }
 
@@ -44,19 +49,25 @@
         vm.wgid = $routeParams.wgid;
         vm.createWidget = createWidget;
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
+            WidgetService
+                .findWidgetsByPageId(vm.pid)
+                .then(function (res) {
+                    vm.widgets = res.data;
+                });
         }
+
         init();
 
         function createWidget(widgetType) {
             var newWidget = {
-                _id:(new Date()).getTime(),
-                name:"",
-                widgetType:widgetType,
-                pageId:vm.pid
+                _id: (new Date()).getTime(),
+                name: "",
+                widgetType: widgetType,
+                pageId: vm.pid
             };
-            WidgetService.createWidget(vm.pid, newWidget);
-            $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page/"+vm.pid+"/widget/"+newWidget._id);
+            WidgetService
+                .createWidget(vm.pid, newWidget);
+            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + newWidget._id);
             return newWidget;
         }
     }
@@ -70,22 +81,36 @@
         vm.deleteWidget = deleteWidget;
         vm.updateWidget = updateWidget;
         function init() {
-            vm.widget=WidgetService.findWidgetById(vm.wgid);
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
+            WidgetService
+                .findWidgetById(vm.wgid)
+                .then(function (res) {
+                    vm.widget = res.data;
+                });
+            WidgetService
+                .findWidgetsByPageId(vm.pid)
+                .then(function (res) {
+                    vm.widgets = res.data;
+                });
         }
+
         init();
 
         function deleteWidget() {
             WidgetService.deleteWidget(vm.wgid);
         }
-        // function updateWidget(widgetId, widget)
+
         function updateWidget() {
-            var result = WidgetService.updateWidget(vm.wgid, vm.widget);
-            if(result === true) {
-                Materialize.toast("Success", 1000);
-            } else {
-                Materialize.toast("Widget Not Found", 1000);
-            }
+            WidgetService
+                .updateWidget(vm.wgid, vm.widget)
+                .then(function (res) {
+                    var result = res.status;
+                    if (result === 200) {
+                        Materialize.toast("Success", 1000);
+                    } else {
+                        Materialize.toast("Widget Not Found", 1000);
+                    }
+                });
+
         }
     }
 })();
