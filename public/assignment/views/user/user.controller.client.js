@@ -70,7 +70,7 @@
                 .findUserByUsername(username)
                 .then(function (res){
                     var user = res.data;
-                    if(user != "" || username == null || username=="" ) {
+                    if(user != null || username == null || username=="" ) {
                         $location.url("/register/");
                         Materialize.toast("Illegal username", 1000);
                     } else {
