@@ -57,100 +57,96 @@
             </form>
         </div>
     </main>
+
+
     <main ng-switch-when="IMAGE">
         <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input ng-model="model.widget.name" id="name" type="text" class="validate">
-                        <label class="active" for="first_name">Name</label>
-                    </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input ng-model="model.widget.name" id="name" type="text" class="validate">
+                    <label class="active" for="first_name">Name</label>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input ng-model="model.widget.text" id="text1" type="text" class="validate">
-                        <label class="active" for="text">Text</label>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input ng-model="model.widget.text" id="text1" type="text" class="validate">
+                    <label class="active" for="text">Text</label>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input ng-model="model.widget.url" id="URL1" type="text" class="validate">
-                        <label class="active" for="URL">URL</label>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input ng-model="model.widget.url" id="URL1" type="text" class="validate">
+                    <label class="active" for="URL">URL</label>
                 </div>
-                <div class="row">
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
                     <input ng-model="model.widget.width" type="text">
                     <label class="active">width(%)</label>
                 </div>
-
-                <div class="row">
-                    <div class="col s12">
-                        <!--todo-->
-                        <form action="/api/upload" method="post" enctype="multipart/form-data">
-                            <input name="myFile" type="file" class="form-control"/>
-                            <input name="width" value="{{model.widget.width}}" style="display: none"/>
-                            <input name="widgetId" value="{{model.widget._id}}" style="display: none"/>
-                            <button type="submit" class="waves-effect waves-light btn">Upload Image</button>
-                        </form>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <form action="/api/upload" method="post" enctype="multipart/form-data">
+                        <input name="myFile" type="file" class="form-control"/>
+                        <input name="width" value="{{model.widget.width}}" style="display: none"/>
+                        <input name="websiteId" value="{{model.wid}}" style="display: none"/>
+                        <input name="pageId" value="{{model.pid}}" style="display: none"/>
+                        <input name="userId" value="{{model.uid}}" style="display: none"/>
+                        <input name="widgetId" value="{{model.wgid}}" style="display: none"/>
+                        <input type="submit" value="upload image" class="waves-effect waves-light btn">
+                    </form>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <a ng-click="model.deleteWidget()"
-                           href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"
-                           class="waves-effect waves-light btn red lighten-1">Delete</a>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <a class="waves-effect waves-light btn" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}/flickr">
+                        search image
+                    </a>
                 </div>
-            </form>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <a ng-click="model.deleteWidget()"
+                       href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"
+                       class="waves-effect waves-light btn red lighten-1">Delete</a>
+                </div>
+            </div>
         </div>
     </main>
+
+
     <main ng-switch-when="YOUTUBE">
         <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input ng-model="model.widget.name" id="first_name2" type="text" class="validate">
-                        <label class="active" for="first_name">Name</label>
-                    </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input ng-model="model.widget.name" id="first_name2" type="text" class="validate">
+                    <label class="active" for="first_name">Name</label>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input ng-model="model.widget.text" id="text" type="text" class="validate">
-                        <label class="active" for="text">Text</label>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input ng-model="model.widget.text" id="text" type="text" class="validate">
+                    <label class="active" for="text">Text</label>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input ng-model="model.widget.url" id="URL" type="text" class="validate">
-                        <label class="active" for="URL">URL</label>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input ng-model="model.widget.url" id="URL" type="text" class="validate">
+                    <label class="active" for="URL">URL</label>
                 </div>
-                <div class="row">
-                    <!--<div class="input-field col s12">-->
-                    <!--&lt;!&ndash; Dropdown Trigger &ndash;&gt;-->
-                    <!--<a class='dropdown-button btn' href='#' data-activates='dropdown1'>Choose Width</a>-->
-
-                    <!--&lt;!&ndash; Dropdown Structure &ndash;&gt;-->
-                    <!--<ul id='dropdown3' class='dropdown-content'>-->
-                    <!--<li><a href="#!">50%</a></li>-->
-                    <!--<li><a href="#!">60%</a></li>-->
-                    <!--<li><a href="#!">70%</a></li>-->
-                    <!--<li><a href="#!">80%</a></li>-->
-                    <!--<li><a href="#!">90%</a></li>-->
-                    <!--<li><a href="#!">100%</a></li>-->
-                    <!--</ul>-->
-                    <!--</div>-->
-                    <input ng-model="model.widget.width" type="text">
-                    <label class="active">width(%)</label>
+            </div>
+            <div class="row">
+                <input ng-model="model.widget.width" type="text">
+                <label class="active">width(%)</label>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <a ng-click="model.deleteWidget()"
+                       href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"
+                       class="waves-effect waves-light btn red lighten-1">Delete</a>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <a ng-click="model.deleteWidget()"
-                           href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"
-                           class="waves-effect waves-light btn red lighten-1">Delete</a>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </main>
 </div>

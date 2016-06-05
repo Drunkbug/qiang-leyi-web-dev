@@ -26,16 +26,28 @@ module.exports = function (app) {
 
     function uploadImage(req, res) {
         var widgetId      = req.body.widgetId;
+        var pageId        = req.body.pageId;
+        var websiteId     = req.body.websiteId;
+        var userId        = req.body.userId;
         var width         = req.body.width;
         var myFile        = req.file;
-
+        if(myFile == null) {
+            res.redirect("/assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+            return;
+        }
         var originalname  = myFile.originalname; // file name on user's computer
         var filename      = myFile.filename;     // new file name in upload folder
         var path          = myFile.path;         // full path of uploaded file
         var destination   = myFile.destination;  // folder where file is saved to
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
-        res.sendStatus(200);
+        for (var i in widgets) {
+            if(widgets[i]._id == widgetId) {
+                widgets[i].url = "/uploads/"+filename;
+            }
+        }
+        res.redirect("/assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+
     }
 
     function createWidget(req, res) {
@@ -52,19 +64,19 @@ module.exports = function (app) {
                 result.push(widgets[i]);
             }
         }
-        res.send(result);
+        res.json(result);
     }
     function findWidgetById(req, res) {
         var widgetId = req.params.widgetId;
         var flag = false;
         for (var i in widgets) {
             if(widgets[i]._id == widgetId) {
-                res.send(widgets[i]);
+                res.json(widgets[i]);
                 flag = true;
             }
         }
         if(!flag) {
-            res.send(null);
+            res.json(null);
         }
     }
     function updateWidget(req, res) {
@@ -79,7 +91,7 @@ module.exports = function (app) {
             }
         }
         if(!flag) {
-            res.sendStatus(400);
+            res.status(404).send("widget not found");
         }
     }
     function deleteWidget(req, res) {
@@ -93,7 +105,7 @@ module.exports = function (app) {
             }
         }
         if(!flag) {
-            res.sendStatus(400);
+            res.status(400).send("widget not found");
         }
     }
 };

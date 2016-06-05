@@ -1,0 +1,56 @@
+<nav>
+    <div class="nav-wrapper teal lighten-2">
+        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"
+           class="brand-logo left brand-icon ">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        </a>
+        <a href="" class="brand-logo left brand-title">
+            Search Flickr
+        </a>
+
+    </div>
+</nav>
+<main>
+    <div class="container">
+        <div class="search-group row">
+            <div class="col s8">
+                <input ng-model="searchText" type="text" class="search-input">
+            </div>
+            <div class="col s4">
+                <span class="input-group-btn">
+                    <a ng-click="model.searchPhotos(searchText)" class="btn waves-effect waves-light search-btn"
+                       type="button">
+                        <i class="material-icons">search</i>
+                    </a>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div ng-repeat="photo in model.photos.photo">
+                <div class="col s4">
+                    <a ng-click="model.addFlikrUrl()"
+                       href="">
+                        <img width="100%"
+                             ng-model =
+                             ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"
+                             alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer class="page-footer teal lighten-2">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <a href="#/profile/{{model.uid}}">
+                    <i class="material-icons right">perm_identity</i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -33,7 +33,7 @@ module.exports = function(app) {
                 result.push(websites[i]);
             }
         }
-        res.send(result);
+        res.json(result);
     }
 
     function findWebsiteById(req, res) {
@@ -41,12 +41,12 @@ module.exports = function(app) {
         var flag = false;
         for (var i in websites) {
             if(websites[i]._id == websiteId) {
-                res.send(websites[i]);
+                res.json(websites[i]);
                 flag = true;
             }
         }
         if(!flag) {
-            res.send(null);
+            res.json(null);
         }
     }
 
@@ -62,7 +62,7 @@ module.exports = function(app) {
             }
         }
         if(!flag) {
-            res.sendStatus(400);
+            res.status(400).send("website not found");
         }
     }
 
@@ -77,7 +77,7 @@ module.exports = function(app) {
             }
         }
         if(!flag) {
-            res.sendStatus(400);
+            res.status(400).send("website not found");
         }
     }
 };

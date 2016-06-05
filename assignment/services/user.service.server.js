@@ -90,7 +90,7 @@ module.exports = function(app) {
             }
         }
         if(!flag) {
-            res.sendStatus(400);
+            res.status(404).send("user not found");
         }
 
     }
@@ -103,6 +103,6 @@ module.exports = function(app) {
                 res.sendStatus(200);
             }
         }
-        res.sendStatus(400);
+        res.status(404).send("user not found");
     }
 };

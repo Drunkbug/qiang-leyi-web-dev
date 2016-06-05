@@ -19,7 +19,7 @@ module.exports = function (app) {
         var page = req.body.page;
         page.websiteId = websiteId;
         pages.push(page);
-        res.send(pages);
+        res.json(pages);
     }
 
     function findPagesByWebsiteId(req, res) {
@@ -30,7 +30,7 @@ module.exports = function (app) {
                 result.push(pages[i]);
             }
         }
-        res.send(result);
+        res.json(result);
     }
 
     function findPageById(req, res) {
@@ -39,11 +39,11 @@ module.exports = function (app) {
         for (var i in pages) {
             if(pages[i]._id == pageId) {
                 flag = true;
-                res.send(pages[i]);
+                res.json(pages[i]);
             }
         }
         if(!flag) {
-            res.send(null);
+            res.json(null);
         }
     }
 
@@ -56,7 +56,7 @@ module.exports = function (app) {
                 res.sendStatus(200);
             }
         }
-        res.sendStatus(400);
+        res.status(404).send("page not found");
     }
 
     function deletePage(req, res) {
@@ -67,7 +67,7 @@ module.exports = function (app) {
                 res.sendStatus(200);
             }
         }
-        res.sendStatus(400);
+        res.status(404).send("page not found");
     }
 
 
