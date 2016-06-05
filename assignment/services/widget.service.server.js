@@ -24,7 +24,6 @@ module.exports = function (app) {
     function createWidget() {}
     function findWidgetsByPageId() {}
     function uploadImage(req, res) {
-        // console.log("passed")
         // var widgetId      = req.body.widgetId;
         // var width         = req.body.width;
         // var myFile        = req.file;

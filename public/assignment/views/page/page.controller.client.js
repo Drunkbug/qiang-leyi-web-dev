@@ -7,7 +7,6 @@
         .controller("PageListController", PageListController)
         .controller("EditPageController", EditPageController)
         .controller("NewPageController", NewPageController);
-
     function EditPageController($routeParams, PageService) {
         var vm = this;
         vm.uid = $routeParams.uid;
@@ -17,17 +16,25 @@
         vm.deletePage = deletePage;
 
         function init() {
-            vm.page = PageService.findPageById(vm.pageId);
+            PageService
+                .findPageById(vm.pageId)
+                .then(function (res) {
+                    vm.page = res.data;
+                });
         }
         init();
 
         function updatePage() {
-            var result = PageService.updatePage(vm.pageId, vm.page);
-            if(result === true) {
-                Materialize.toast("Success", 1000);
-            } else {
-                Materialize.toast("Page Not Found", 1000);
-            }
+            PageService
+                .updatePage(vm.pageId, vm.page)
+                .then(function (res) {
+                    var result = res.status;
+                    if(result === 200) {
+                        Materialize.toast("Success", 1000);
+                    } else {
+                        Materialize.toast("Page Not Found", 1000);
+                    }
+                });
         }
 
         function deletePage() {
@@ -42,7 +49,11 @@
         vm.wid = $routeParams.wid;
         function init() {
             var uid = vm.uid;
-            vm.pages = PageService.findPagesByWebsiteId(vm.wid);
+            PageService
+                .findPagesByWebsiteId(vm.wid)
+                .then(function (res) {
+                    vm.pages = res.data;
+                });
         }
 
         init();
@@ -54,7 +65,11 @@
         vm.wid = $routeParams.wid;
         vm.createPage  = createPage;
         function init() {
-            vm.pages = PageService.findPagesByWebsiteId(vm.wid);
+            PageService
+                .findPagesByWebsiteId(vm.wid)
+                .then(function (res) {
+                    vm.pages = res.data;
+                });
         }
         init();
 
@@ -65,8 +80,11 @@
                 websiteId: vm.wid,
                 title: title
             };
-            PageService.createPage(vm.uid, newPage);
-            Materialize.toast("Success", 1000);
+            PageService
+                .createPage(vm.uid, newPage)
+                .then(function (res) {
+                    Materialize.toast("Success", 1000);
+                });
         }
 
 
