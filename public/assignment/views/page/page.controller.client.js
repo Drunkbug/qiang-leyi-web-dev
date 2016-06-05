@@ -43,7 +43,7 @@
     }
 
 
-    function PageListController($routeParams, PageService) {
+    function PageListController($location, $routeParams, PageService) {
         var vm = this;
         vm.uid = $routeParams.uid;
         vm.wid = $routeParams.wid;
@@ -81,7 +81,7 @@
                 title: title
             };
             PageService
-                .createPage(vm.uid, newPage)
+                .createPage(vm.wid, newPage)
                 .then(function (res) {
                     Materialize.toast("Success", 1000);
                 });
