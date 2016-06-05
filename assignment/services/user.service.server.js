@@ -22,7 +22,7 @@ module.exports = function(app) {
         } else if (username) {
             findUserByUsername(username, res);
         } else {
-            res.send(null);
+            res.json(null);
         }
     }
 
@@ -32,11 +32,11 @@ module.exports = function(app) {
         for(var u in users) {
             if (users[u].username === username && users[u].password === password) {
                 flag = true;
-                res.send(users[u]);
+                res.json(users[u]);
             }
         }
         if(!flag) {
-            res.send(null);
+            res.json(null);
         }
 
     }
@@ -46,11 +46,11 @@ module.exports = function(app) {
         for(var u in users) {
             if (users[u].username == username) {
                 flag = true;
-                res.send(users[u]);
+                res.json(users[u]);
             }
         }
         if(!flag) {
-            res.send(null);
+            res.json(null);
         }
 
     }
@@ -60,19 +60,19 @@ module.exports = function(app) {
         var flag = false;
         for (var i in users) {
             if(userId == users[i]._id) {
-                res.send(users[i]);
+                res.json(users[i]);
                 flag = 1;
             }
         }
         if(!flag) {
-            res.send(null);
+            res.json(null);
         }
     }
 
     function createUser(req, res) {
         var user = req.body.user;
         users.push(user);
-        res.send(user);
+        res.json(user);
     }
 
 

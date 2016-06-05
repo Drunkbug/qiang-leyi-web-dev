@@ -19,16 +19,16 @@
         return api;
 
         function findWebsiteById(websiteId) {
-            var url = "http://localhost:3000/api/website/"+websiteId;
+            var url = "/api/website/"+websiteId;
             return $http.get(url);
         }
         function findWebsitesForUser(userId) {
-            var url = "http://localhost:3000/api/user/"+userId+"/website";
+            var url = "/api/user/"+userId+"/website";
             return $http.get(url);
         }
 
         function createWebsite(userId, website) {
-            var url = "http://localhost:3000/api/user/"+userId+"/website";
+            var url = "/api/user/"+userId+"/website";
             var data = {
                 userId:userId,
                 website: website
@@ -38,7 +38,7 @@
         }
 
         function updateWebsite(websiteId, website) {
-            var url = "http://localhost:3000/api/website/"+websiteId;
+            var url = "/api/website/"+websiteId;
             var data = {
                 websiteId:websiteId,
                 website:website
@@ -47,7 +47,7 @@
         }
 
         function deleteWebsite(websiteId) {
-            var url = "http://localhost:3000/api/website/"+websiteId;
+            var url = "/api/website/"+websiteId;
             return $http.delete(url);
         }
     }

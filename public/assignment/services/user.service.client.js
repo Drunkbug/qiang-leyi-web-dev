@@ -17,7 +17,7 @@
         return api;
 
         function createUser(user) {
-            var url = "http://localhost:3000/api/user";
+            var url = "/api/user";
             var data = {
                 user: user
             };
@@ -30,11 +30,11 @@
         }
 
         function findUserByUsername(username) {
-            var url = "http://localhost:3000/api/user?username="+username;
+            var url = "/api/user?username="+username;
             return $http.get(url);
         }
         function findUserByUsernameAndPassword(username, password) {
-            var url = "http://localhost:3000/api/user?username="+username+"&password="+password;
+            var url = "/api/user?username="+username+"&password="+password;
             return $http.get(url);
         }
 
