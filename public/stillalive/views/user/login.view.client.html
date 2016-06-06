@@ -1,0 +1,28 @@
+<div class="container-fluid login-container-fluid">
+    <div class="login-container row">
+        <div class="row">
+            <p class="login-title">Welcome</p>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <input ng-model="username" type="text" class="form-control" id="username" placeholder="Username">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <input ng-model="password" type="password" class="form-control" id="pwd" placeholder="Password">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <a ng-click="model.login(username, password)">
+                    <button type="submit" class="btn btn-primary login-btn">Login</button>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <p class="login-message">Not registered? <a href="#register">Create an account</a></p></div>
+        </div>
+    </div>
+</div>

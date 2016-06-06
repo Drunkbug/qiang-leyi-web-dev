@@ -1,10 +1,41 @@
+/*#579DE3*/
+/*#ED6152*/
+/*#D9D9D9*/
+/*#666*/
+/*#2E2D2E*/
+
 html, body, .ng-scope, .container-fluid {
     height:100%;
+}
+.container-fluid {
+    height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 a:hover {
     text-decoration: none;
 }
+.btn-primary {
+    background-color: #579DE3;
+    border: none;
+}
 
+.btn-danger {
+    background-color: #ED6152;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #579DE3;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #ED6152;
+    border: none;
+}
 .container {
     padding-top: 20px;
     padding-left: 30px;
@@ -23,7 +54,7 @@ div.main-top {
     margin: 0;
     padding: 0;
 }
-p.main-title {
+div.main-title {
     font-size: 2em;
     line-height: 35px;
     text-align: center;
@@ -37,6 +68,14 @@ p.main-title {
     margin: auto;
     width:50%;
     height: 30%;
+}
+p.main-title {
+    font-size: 1.4em;
+}
+p.main-sub {
+    font-size: 20px;
+    font-weight: 100;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
 
 div.main-top div.container {
@@ -96,22 +135,48 @@ div.main-bottom {
 
 input {
     height:50px !important;
+    background: transparent;
 }
+/* auto complete style */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+/* end auto complete*/
 
 p.login-title {
     text-align: center;
-    font-size: 3.4em;
-    color:#666;
-    /*#666*/
+    font-size: 3.2em;
+    color:#2E2D2E;
 }
 
+
+.login-message {
+    color:gray;
+    font-size: 13px;
+}
+.login-container-fluid {
+    padding-top:8%;
+}
 .login-btn {
     width: 100%;
-    margin-bottom: 10px;
 }
 
 .login-col {
     padding: 1px;
-    margin: 0;
+}
+
+.row {
+    padding-bottom: 5px;
+}
+
+.login-container {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    border: 1px solid #666;
 }
 

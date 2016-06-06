@@ -3,7 +3,7 @@
  */
 (function () {
     angular
-        .module("RUSAMaker")
+        .module("StillAliveAppMaker")
         .factory("UserService", UserService);
     function UserService($http) {
         var api = {

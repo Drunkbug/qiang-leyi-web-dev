@@ -2,7 +2,7 @@
  * Created by leyiqiang on 6/5/16.
  */
 (function() {
-    angular.module("RUSAMaker")
+    angular.module("StillAliveAppMaker")
         .config(Config);
 
     function Config($routeProvider) {

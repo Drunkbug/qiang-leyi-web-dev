@@ -1,13 +1,16 @@
 /**
  * Created by leyiqiang on 6/2/16.
  */
-module.exports = function(app) {
-    var users = [
-        {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
-        {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
-        {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
-        {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
-    ];
+module.exports = function(app, models) {
+
+    var userModel = models.userModel;
+
+    // var users = [
+    //     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
+    //     {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
+    //     {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
+    //     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
+    // ];
     app.get("/api/user",getUsers);
     app.get("/api/user/:userId",findUserById);
     app.post("/api/user",createUser);
@@ -42,37 +45,59 @@ module.exports = function(app) {
     }
 
     function findUserByUsername(username, res) {
-        var flag = false;
-        for(var u in users) {
-            if (users[u].username == username) {
-                flag = true;
-                res.json(users[u]);
-            }
-        }
-        if(!flag) {
-            res.json(null);
-        }
+        userModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    res.json(user);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
 
     }
 
     function findUserById(req, res) {
         var userId = req.params.userId;
-        var flag = false;
-        for (var i in users) {
-            if(userId == users[i]._id) {
-                res.json(users[i]);
-                flag = 1;
-            }
-        }
-        if(!flag) {
-            res.json(null);
-        }
+
+        userModel
+            .findUserById(userId)
+            .then(
+                function (user) {
+                    res.json(user);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+        // var flag = false;
+        // for (var i in users) {
+        //     if(userId == users[i]._id) {
+        //         res.json(users[i]);
+        //         flag = 1;
+        //     }
+        // }
+        // if(!flag) {
+        //     res.json(null);
+        // }
     }
 
     function createUser(req, res) {
         var user = req.body.user;
-        users.push(user);
-        res.json(user);
+        // users.push(user);
+        // res.json(user);
+
+        userModel
+            .createUser(user)
+            .then(
+                function (user) {
+                    res.json(user);
+                },
+                function(err) {
+                    res.status(400).send("Illegal User");
+                }
+            );
     }
 
 
