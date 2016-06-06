@@ -1,0 +1,117 @@
+html, body, .ng-scope, .container-fluid {
+    height:100%;
+}
+a:hover {
+    text-decoration: none;
+}
+
+.container {
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+div.main-top {
+    height: 100%;
+    background: url(../imgs/main-bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.divider {
+    margin: 0;
+    padding: 0;
+}
+p.main-title {
+    font-size: 2em;
+    line-height: 35px;
+    text-align: center;
+    color: white;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left:0;
+    right:0;
+    margin: auto;
+    width:50%;
+    height: 30%;
+}
+
+div.main-top div.container {
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.2;
+}
+div.main-bottom {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.main-btns {
+    width: 100%;
+    position:absolute;
+    z-index: 1000;
+    bottom: 50px;
+    left:0;
+    right:0;
+    margin:auto;
+}
+.main-btn {
+    color: white;
+    width:100%;
+    vertical-align: middle;
+    display: block;
+    margin: 0 auto;
+}
+
+/***********************
+  OUTLINE BUTTONS
+************************/
+
+.btn.outline {
+    background: none;
+    padding: 12px 22px;
+}
+.btn-default.outline {
+    border: 2px solid #fff;
+    color: #fff;
+}
+.btn-default.outline:hover, .btn-default.outline:focus, .btn-default.outline:active, .btn-default.outline.active, .open > .dropdown-toggle.btn-default {
+    color: #fff;
+    border-color: #fff;
+}
+.btn-default.outline:active, .btn-default.outline.active {
+    border-color: #fff;
+    color: #fff;
+    box-shadow: none;
+    background-color: transparent;
+}
+/***********************
+  END OUTLINE BUTTONS
+************************/
+
+input {
+    height:50px !important;
+}
+
+p.login-title {
+    text-align: center;
+    font-size: 3.4em;
+    color:#666;
+    /*#666*/
+}
+
+.login-btn {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.login-col {
+    padding: 1px;
+    margin: 0;
+}
+
