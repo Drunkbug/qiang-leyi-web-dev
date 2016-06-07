@@ -15,6 +15,8 @@ assignment(app);
 var stillalive = require('./stillalive/app.js');
 stillalive(app);
 
+
+
 // require ("./public/js/app.js")(app);
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;

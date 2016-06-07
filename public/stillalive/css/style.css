@@ -8,11 +8,12 @@ html, body, .ng-scope, .container-fluid {
     height:100%;
 }
 .container-fluid {
-    height: 100%;
+    background: url(../imgs/blur-bg2.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height: 100%;
 }
 a:hover {
     text-decoration: none;
@@ -44,11 +45,6 @@ a:hover {
 
 div.main-top {
     height: 100%;
-    background: url(../imgs/main-bg.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
 .divider {
     margin: 0;
@@ -90,15 +86,15 @@ div.main-bottom {
     text-align: center;
 }
 
-.main-btns {
-    width: 100%;
-    position:absolute;
-    z-index: 1000;
-    bottom: 50px;
-    left:0;
-    right:0;
-    margin:auto;
-}
+/*.main-btns {*/
+    /*width: 100%;*/
+    /*position:absolute;*/
+    /*z-index: 1000;*/
+    /*bottom: 150px;*/
+    /*left:0;*/
+    /*right:0;*/
+    /*margin:auto;*/
+/*}*/
 .main-btn {
     color: white;
     width:100%;
@@ -146,15 +142,16 @@ input:-webkit-autofill {
 p.login-title {
     text-align: center;
     font-size: 3.2em;
-    color:#2E2D2E;
+    color:white;
 }
 
 
 .login-message {
-    color:gray;
+    color:white;
     font-size: 13px;
 }
 .login-container-fluid {
+
     padding-top:8%;
 }
 .login-btn {
@@ -172,11 +169,14 @@ p.login-title {
 .login-container {
     position: relative;
     z-index: 1;
-    background: #FFFFFF;
+    background: transparent;
     max-width: 360px;
     margin: 0 auto 100px;
     padding: 45px;
     text-align: center;
-    border: 1px solid #666;
+}
+
+input {
+    opacity: 0.7;
 }
 

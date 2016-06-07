@@ -11,11 +11,6 @@
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <input ng-model="email" type="email" class="form-control" id="email" placeholder="Email">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
                 <input ng-model="password" type="password" class="form-control" id="pwd" placeholder="Password">
             </div>
         </div>
@@ -27,8 +22,8 @@
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <a ng-click="model.login(username, password)">
-                    <button type="submit" class="btn btn-danger login-btn">Register</button>
+                <a ng-click="model.checkDupUser(username, pwd)">
+                    <button type="submit" class="outline btn btn-default login-btn">Register</button>
                 </a>
             </div>
         </div>

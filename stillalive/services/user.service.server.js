@@ -8,11 +8,11 @@ module.exports = function(app) {
         {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia", email:""},
         {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi", email:""}
     ];
-    app.get("/api/user",getUsers);
-    app.get("/api/user/:userId",findUserById);
-    app.post("/api/user",createUser);
-    app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", deleteUser);
+    app.get("/api/project/user",getUsers);
+    app.get("/api/project/user/:userId",findUserById);
+    app.post("/api/project/user",createUser);
+    app.put("/api/project/user/:userId", updateUser);
+    app.delete("/api/project/user/:userId", deleteUser);
 
     function getUsers(req, res) {
         var username = req.query["username"];

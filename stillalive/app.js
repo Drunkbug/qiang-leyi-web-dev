@@ -3,7 +3,7 @@
  */
 module.exports = function(app) {
     var userService = require("./services/user.service.server.js")(app);
-    // var websiteService = require("./services/website.service.server")(app);
-    // var widgetService = require("./services/widget.service.server.js")(app);
-    // var pageService = require("./services/page.service.server.js")(app);
+    var profileService = require("./services/profile.service.server")(app);
+    var willService = require("./services/will.service.server")(app);
+    var adminService = require("./services/admin.service.server")(app);
 };
