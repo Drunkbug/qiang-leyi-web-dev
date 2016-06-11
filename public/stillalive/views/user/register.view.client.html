@@ -11,22 +11,27 @@
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <input ng-model="password" type="password" class="form-control" id="pwd" placeholder="Password">
+                <span class="pwd-fail" ng-if="!(password===cpassword)">*</span><input ng-model="password" type="password" class="form-control" id="pwd" placeholder="Password">
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <input  type="password" class="form-control" id="confirm-pwd" placeholder="Confirm Password">
+                <span class="pwd-fail" ng-if="!(password===cpassword)">*</span><input ng-model="cpassword" type="password" class="form-control" id="cpwd" placeholder="Confirm Password">
             </div>
         </div>
-
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <a ng-click="model.checkDupUser(username, pwd)">
-                    <button type="submit" class="outline btn btn-default login-btn">Register</button>
-                </a>
+            <button ng-click="model.checkDupUser(username, password)"
+                     class="outline btn btn-default login-btn">Register</button>
             </div>
         </div>
+        <!--<div class="row">-->
+            <!--<div class="col-xs-12 col-sm-12 col-md-12">-->
+                <!--<a ng-click="model.checkDupUser(username, password)">-->
+                    <!--<button type="submit" class="outline btn btn-default login-btn">Register</button>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <p class="login-message">Already have account? <a href="#login">Login</a></p></div>

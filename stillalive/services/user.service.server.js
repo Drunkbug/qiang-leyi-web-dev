@@ -34,6 +34,7 @@ module.exports = function(app) {
                 flag = true;
                 res.json(users[u]);
             }
+
         }
         if(!flag) {
             res.json(null);

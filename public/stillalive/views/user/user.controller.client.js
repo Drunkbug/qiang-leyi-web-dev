@@ -38,7 +38,7 @@
         }
 
         init();
-        function Login(username, $routeParams, password) {
+        function Login(username, password, $routeParams) {
             UserService
                 .findUserByUsernameAndPassword(username,password)
                 .then(function (res) {

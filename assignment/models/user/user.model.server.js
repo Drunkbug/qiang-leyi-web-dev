@@ -3,7 +3,7 @@
  */
 module.exports = function () {
     var mongoose = require("mongoose");
-    mongoose.connect('mongodb://localhost/assignment');
+    // mongoose.connect('mongodb://localhost/assignment');
     var UserSchema = require("./user.schema.server")();
     var User = mongoose.model("User", UserSchema);
 
@@ -24,8 +24,8 @@ module.exports = function () {
         return User.create(user);
     }
 
-    function findUserByCredentials() {
-
+    function findUserByCredentials(username, password) {
+        return User.findOne({username: username, password: password});
     }
 
     function findUserByUsername(username) {
@@ -33,14 +33,23 @@ module.exports = function () {
     }
 
     function findUserById(userId) {
+        // User.find({_id:userId});
         return User.findById(userId);
     }
 
-    function updateUser() {
+    function updateUser(id, newUser) {
+        return User.update(
+            {_id: id},
+            {$set :
+                {
+                    firstName: newUser.firstName,
+                    lastName: newUser.lastName
+                }
 
+            });
     }
 
-    function deleteUser() {
-
+    function deleteUser(userId) {
+        return User.remove({_id: userId});
     }
 };

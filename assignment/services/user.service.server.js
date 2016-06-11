@@ -31,16 +31,26 @@ module.exports = function(app, models) {
 
 
     function findUserByCredentials(username, password, res) {
-        var flag = false;
-        for(var u in users) {
-            if (users[u].username === username && users[u].password === password) {
-                flag = true;
-                res.json(users[u]);
-            }
-        }
-        if(!flag) {
-            res.json(null);
-        }
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function(user) {
+                    res.json(user);
+                },
+                function (err) {
+                    res.status(403).send("Unable to login");
+                }
+            );
+        // var flag = false;
+        // for(var u in users) {
+        //     if (users[u].username === username && users[u].password === password) {
+        //         flag = true;
+        //         res.json(users[u]);
+        //     }
+        // }
+        // if(!flag) {
+        //     res.json(null);
+        // }
 
     }
 
@@ -68,6 +78,7 @@ module.exports = function(app, models) {
                     res.json(user);
                 },
                 function (err) {
+                    console.log(err)
                     res.status(400).send(err);
                 }
             );
@@ -95,7 +106,7 @@ module.exports = function(app, models) {
                     res.json(user);
                 },
                 function(err) {
-                    res.status(400).send("Illegal User");
+                    res.status(400).send("Illegal Username");
                 }
             );
     }
@@ -104,30 +115,47 @@ module.exports = function(app, models) {
     function updateUser(req, res) {
         var id = req.body.id;
         var newUser = req.body.newUser;
-        var flag = false;
-        for (var i in users) {
-            if(users[i]._id == id) {
-                users[i].firstName = newUser.firstName;
-                users[i].lastName = newUser.lastName;
-                flag = true;
+        userModel
+            .updateUser(id, newUser)
+            .then(function (user) {
                 res.sendStatus(200);
-
-            }
-        }
-        if(!flag) {
-            res.status(404).send("user not found");
-        }
+            },
+            function (err) {
+                res.status(404).send("Unable to update User")
+            });
+        // var flag = false;
+        // for (var i in users) {
+        //     if(users[i]._id == id) {
+        //         users[i].firstName = newUser.firstName;
+        //         users[i].lastName = newUser.lastName;
+        //         flag = true;
+        //         res.sendStatus(200);
+        //
+        //     }
+        // }
+        // if(!flag) {
+        //     res.status(404).send("user not found");
+        // }
 
     }
 
     function deleteUser(req, res) {
         var id = req.params.userId;
-        for (var i in users) {
-            if (users[i].id === id) {
-                users.splice(i,1);
+        userModel
+            .deleteUser(id)
+            .then(function(status) {
                 res.sendStatus(200);
-            }
-        }
-        res.status(404).send("user not found");
+            },
+            function (err) {
+                res.status(404).send("Unable to remove user");
+
+            });
+        // for (var i in users) {
+        //     if (users[i].id === id) {
+        //         users.splice(i,1);
+        //         res.sendStatus(200);
+        //     }
+        // }
+        // res.status(404).send("user not found");
     }
 };

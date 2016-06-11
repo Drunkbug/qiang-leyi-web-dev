@@ -9,9 +9,10 @@
         .controller("RegisterController", RegisterController);
     
 
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($location, $routeParams, UserService) {
         var vm = this;
         vm.updateUser = updateUser;
+        vm.deleteUser = deleteUser;
         var id = $routeParams["id"];
         function init() {
             UserService
@@ -39,7 +40,12 @@
             UserService
                 .deleteUser(vm.user._id)
                 .then(function (res) {
-                    
+                    if(res.status === 200) {
+                        Materialize.toast("Successfully Deleted", 1000);
+                        $location.url("/login")
+                    } else {
+                        Materialize.toast("Unable to delete user", 1000);
+                    }
                 });
         }
     }
@@ -70,12 +76,11 @@
                 .findUserByUsername(username)
                 .then(function (res){
                     var user = res.data;
-                    if(user != null || username == null || username=="" ) {
+                    if(user!= ""|| username == null || username=="" ) {
                         $location.url("/register/");
                         Materialize.toast("Illegal username", 1000);
                     } else {
                         var newUser =  {
-                            _id:(new Date()).getTime(),
                             username:username,
                             password:password,
                             firstname:"",
@@ -84,7 +89,7 @@
                         UserService
                             .createUser(newUser)
                             .then(function(res) {
-                                $location.url("/profile/"+newUser._id);
+                                $location.url("/profile/"+res.data._id);
                             });
 
                     }
