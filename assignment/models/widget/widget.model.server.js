@@ -1,8 +1,8 @@
 /**
  * Created by leyiqiang on 6/11/16.
  */
-var mongoose = require("mongoose");
 module.exports = function () {
+    var mongoose = require("mongoose");
     var WidgetSchema = require("./widget.schema.server")();
     var Widget = mongoose.model("Widget", WidgetSchema);
 
