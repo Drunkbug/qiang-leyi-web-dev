@@ -8,11 +8,12 @@
         .controller("WidgetChooserController", WidgetChooserController)
         .controller("EditWidgetController", EditWidgetController)
         .controller("WidgetFlikrSearchController", WidgetFlikrSearchController);
-
+    var orderFlag = -1;
     function WidgetListController($sce, $routeParams, WidgetService) {
         var vm = this;
         vm.getTrustedHtml = getTrustedHtml;
         vm.getTrustedUrl = getTrustedUrl;
+        vm.sortWidget = sortWidget;
 
         vm.uid = $routeParams.uid;
         vm.wid = $routeParams.wid;
@@ -23,11 +24,15 @@
                 .findWidgetsByPageId(vm.pid)
                 .then(function (res) {
                     vm.widgets = res.data;
+                    vm.widgets.sort(function(a, b){
+                        return a.order-b.order;
+                    });
+
+                    console.log(vm.widgets)
                 });
         }
 
         init();
-
         function getTrustedHtml(widget) {
             var html = $sce.trustAsHtml(widget.text);
             return html;
@@ -40,8 +45,18 @@
             return $sce.trustAsResourceUrl(url);
         }
 
-        $(".widget-container")
-            .sortable({axis:"y"});
+        // $(".widget-container")
+        //     .sortable({axis:"y"});
+        // (".widget-container").draggable();
+        function sortWidget(start, stop) {
+            WidgetService
+                .reorderWidget(vm.pid, start, stop)
+                .then(
+                    function (res) {
+                        vm.widgets = res.data;
+                    }
+                )
+        }
 
     }
 
@@ -63,16 +78,19 @@
         init();
 
         function createWidget(widgetType) {
+            orderFlag+=1;
             var newWidget = {
-                _id: (new Date()).getTime(),
-                name: "",
+                _page: vm.pid,
                 widgetType: widgetType,
-                pageId: vm.pid
+                order:orderFlag
             };
             WidgetService
-                .createWidget(vm.pid, newWidget);
-            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + newWidget._id);
-            return newWidget;
+                .createWidget(vm.pid, newWidget)
+                .then(function (res) {
+                    var widget = res.data;
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + widget._id);
+                    return newWidget;
+                });
         }
     }
 
@@ -90,14 +108,15 @@
                 .then(function (res) {
                     vm.widget = res.data;
                 });
-            WidgetService
-                .findWidgetsByPageId(vm.pid)
-                .then(function (res) {
-                    vm.widgets = res.data;
-                });
+            // WidgetService
+            //     .findWidgetsByPageId(vm.pid)
+            //     .then(function (res) {
+            //         vm.widgets = res.data;
+            //     });
         }
 
         init();
+
 
         function deleteWidget() {
             WidgetService.deleteWidget(vm.wgid);

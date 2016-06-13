@@ -14,50 +14,12 @@
     </div>
 </nav>
 <main>
-    <div class="container widget-container">
-        <ul ng-repeat="widget in model.widgets"
-            ng-switch="widget.widgetType"
-            class="collection with-header widget-components">
 
-            <div class="right-top-icons">
-                <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"><i class="material-icons icon-setting">settings</i></a>
-                <a href=""><i class="material-icons icon-reorder">reorder</i></a>
-            </div>
-
-            <li ng-switch-when="HEADING" class="collection-header widget-header widget-list">
-                <div class="widget-content">
-                    <div ng-switch="widget.size">
-                        <h1 ng-switch-when="1">{{widget.text}}</h1>
-                        <h2 ng-switch-when="2">{{widget.text}}</h2>
-                        <h3 ng-switch-when="3">{{widget.text}}</h3>
-                        <h4 ng-switch-when="4">{{widget.text}}</h4>
-                        <h5 ng-switch-when="5">{{widget.text}}</h5>
-                        <h6 ng-switch-when="6">{{widget.text}}</h6>
-                        <h5 ng-switch-default>{{widget.text}}</h5>
-                    </div>
-                </div>
-            </li>
-            <li ng-switch-when="IMAGE" class="collection-header widget-header widget-list">
-                <div class="widget-content">
-                    <img ng-src="{{widget.url}}" width="{{widget.width}}%" alt="">
-                </div>
-            </li>
-            <li ng-switch-when="HTML" class="collection-header widget-header widget-list">
-                <div class="widget-content" ng-bind-html="model.getTrustedHtml(widget)">
-                </div>
-            </li>
-            <li ng-switch-when="YOUTUBE" class="collection-header widget-header widget-list">
-                <iframe width="{{widget.width}}%" height="auto" ng-src="{{model.getTrustedUrl(widget)}}" frameborder="0" allowfullscreen></iframe>
-            </li>
-            <li ng-switch-default class="collection-header widget-header widget-list">
-                <div class="widget-content">
-                    {{widget}}
-                </div>
-            </li>
-        </ul>
+    <div class="container">
+        <wam-sortable sort="model.sortWidget(start, stop)"
+                     data="model.widgets"></wam-sortable>
     </div>
 </main>
-
 <footer class="page-footer teal lighten-2">
     <div class="container">
         <div class="row">

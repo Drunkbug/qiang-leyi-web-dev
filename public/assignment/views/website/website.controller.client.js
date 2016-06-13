@@ -8,7 +8,7 @@
         .controller("EditWebsiteController", EditWebsiteController)
         .controller("NewWebsiteController", NewWebsiteController);
 
-    function EditWebsiteController($routeParams, WebsiteService) {
+    function EditWebsiteController($location, $routeParams, WebsiteService) {
         var vm = this;
         vm.uid = $routeParams.uid;
         vm.websiteId = $routeParams.websiteId;
@@ -31,6 +31,7 @@
                     var result = res.status;
                     if(result === 200) {
                         Materialize.toast("Success", 1000);
+                        $location.url("/user/"+vm.uid+"/website")
                     } else {
                         Materialize.toast("Website Not Found", 1000);
                     }
@@ -53,13 +54,16 @@
                 .findWebsitesForUser(uid)
                 .then(function (res) {
                     vm.websites = res.data;
+                },
+                function(err){
+                    Materialize.toast("Websites Not Found", 1000);
                 });
         }
 
         init();
     }
 
-    function NewWebsiteController($routeParams, WebsiteService) {
+    function NewWebsiteController($location, $routeParams, WebsiteService) {
         var vm = this;
         vm.uid = $routeParams.uid;
         vm.createWebsite  = createWebsite;
@@ -74,7 +78,6 @@
 
         function createWebsite(name, description) {
             var newWebsite = {
-                _id: (new Date()).getTime(),
                 name: name,
                 developerId: vm.uid,
                 description: description
@@ -82,7 +85,12 @@
             WebsiteService
                 .createWebsite(vm.uid, newWebsite)
                 .then(function (res) {
+                    var newWebsite = res.data;
                     Materialize.toast("Success", 1000);
+                    $location.url("/user/"+vm.uid+"/website")
+                },
+                function(err){
+                    Materialize.toast("Unable to add Website", 1000);
                 });
         }
         

@@ -11,9 +11,10 @@
            ng-click="model.updateWidget()">
             <i class="material-icons right">done</i>
         </a>
-
     </div>
 </nav>
+
+
 <div ng-switch="model.widget.widgetType">
     <main ng-switch-when="HEADING">
         <div class="row">
@@ -100,7 +101,8 @@
             </div>
             <div class="row">
                 <div class="col s12">
-                    <a class="waves-effect waves-light btn" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}/flickr">
+                    <a class="waves-effect waves-light btn"
+                       href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}/flickr">
                         search image
                     </a>
                 </div>
@@ -149,7 +151,39 @@
             </div>
         </div>
     </main>
+
+
+    <main ng-switch-when="HTML">
+        <div text-angular ng-model="model.widget.text" ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]"></div>
+        <!--<div ng-bind-html="model.widget.html"></div>-->
+        <div class="input-field col s12">
+            <a ng-click="model.deleteWidget()"
+               href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"
+               class="waves-effect waves-light btn red lighten-1">Delete</a>
+        </div>
+    </main>
+
+    <main ng-switch-when="TEXT">
+            <div>
+                Text
+                <input ng-model="model.widget.text" class="form-control"/>
+                Rows
+                <input ng-model="model.widget.rows" class="form-control" type="number"/>
+                Placeholder
+                <input ng-model="model.widget.placeholder" class="form-control"/>
+
+                <input ng-model="model.widget.formatted" type="checkbox" id="myCheckbox" class="filled-in" />
+                <label for="myCheckbox">Formatted</label>
+            </div>
+            <a ng-click="model.deleteWidget()"
+               href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"
+               class="waves-effect waves-light btn red lighten-1">Delete</a>
+    </main>
+
 </div>
+
 
 <footer class="page-footer teal lighten-2">
     <div class="container">

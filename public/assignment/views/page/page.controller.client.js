@@ -7,7 +7,7 @@
         .controller("PageListController", PageListController)
         .controller("EditPageController", EditPageController)
         .controller("NewPageController", NewPageController);
-    function EditPageController($routeParams, PageService) {
+    function EditPageController($location, $routeParams, PageService) {
         var vm = this;
         vm.uid = $routeParams.uid;
         vm.wid = $routeParams.wid;
@@ -31,6 +31,8 @@
                     var result = res.status;
                     if(result === 200) {
                         Materialize.toast("Success", 1000);
+                        $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page");
+
                     } else {
                         Materialize.toast("Page Not Found", 1000);
                     }
@@ -48,7 +50,6 @@
         vm.uid = $routeParams.uid;
         vm.wid = $routeParams.wid;
         function init() {
-            var uid = vm.uid;
             PageService
                 .findPagesByWebsiteId(vm.wid)
                 .then(function (res) {
@@ -59,7 +60,7 @@
         init();
     }
 
-    function NewPageController($routeParams, PageService) {
+    function NewPageController($location, $routeParams, PageService) {
         var vm = this;
         vm.uid = $routeParams.uid;
         vm.wid = $routeParams.wid;
@@ -75,7 +76,6 @@
 
         function createPage(name, title) {
             var newPage = {
-                _id: (new Date()).getTime(),
                 name: name,
                 websiteId: vm.wid,
                 title: title
@@ -84,6 +84,7 @@
                 .createPage(vm.wid, newPage)
                 .then(function (res) {
                     Materialize.toast("Success", 1000);
+                    $location.url("/user/"+vm.uid+"/website/"+vm.wid+"/page");
                 });
         }
 
