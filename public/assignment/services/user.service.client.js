@@ -11,6 +11,7 @@
             register: register,
             login: login,
             logout: logout,
+            checkLoggedin: checkLoggedin,
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             findUserById:findUserById,
             updateUser:updateUser,
@@ -19,6 +20,9 @@
         };
         return api;
 
+        function checkLoggedin() {
+            return $http.get("/api/loggedin");
+        }
 
         function logout() {
             return $http.post("/api/logout");

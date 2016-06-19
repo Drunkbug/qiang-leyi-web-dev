@@ -3,6 +3,8 @@
  */
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require("bcrypt-nodejs");
+
 module.exports = function(app, models) {
 
     var userModel = models.userModel;
@@ -16,15 +18,24 @@ module.exports = function(app, models) {
     app.post("/api/login", passport.authenticate('wam'), login);
     app.post("/api/register", register);
     app.post("/api/logout", logout);
+    app.get("/api/loggedin", loggedin);
     app.get("/api/user",getUsers);
     app.get("/api/user/:userId",findUserById);
     app.post("/api/user",createUser);
     app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", deleteUser);
+    app.delete("/api/user/:userId", authenticate, deleteUser);
 
     passport.use('wam', new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
+
+    function authenticate(req, res) {
+        if(req.isAuthenticated()) {
+            next();
+        } else {
+            res.send(403);
+        }
+    }
 
 
     function localStrategy(username, password, done) {
@@ -32,7 +43,7 @@ module.exports = function(app, models) {
             .findUserByCredentials(username, password)
             .then(
                 function(user) {
-                    if(user.username === username && user.password === password) {
+                    if(user && bcrypt.compareSync(password, user.password)) {
                         return done(null, user);
                     } else {
                         return done(null, false);
@@ -71,6 +82,7 @@ module.exports = function(app, models) {
                         res.status(400).send("Username already exist");
                         return;
                     } else {
+                        req.body.password = bcrypt.hashSync(password);
                         return userModel
                             .createUser(req.body);
                     }
@@ -108,6 +120,14 @@ module.exports = function(app, models) {
     function logout(req, res) {
         req.logout();
         res.send(200);
+    }
+
+    function loggedin(req, res) {
+        if(req.isAuthenticated()) {
+            res.json(req.user);
+        } else {
+            res.send('0');
+        }
     }
 
     function getUsers(req, res) {
@@ -171,7 +191,6 @@ module.exports = function(app, models) {
                     res.json(user);
                 },
                 function (err) {
-                    console.log(err)
                     res.status(400).send(err);
                 }
             );
