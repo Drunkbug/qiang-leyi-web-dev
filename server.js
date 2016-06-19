@@ -12,9 +12,16 @@ var passport = require('passport');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+var secret = "MySecret";
+
+
+
+if(process.env.SESSION_SECRET) {
+    secret = process.env.SESSION_SECRET
+}
 
 app.use(cookieParser());
-app.use(session({ secret: "mysecret" }));
+app.use(session({ secret: secret }));
 
 
 app.use(passport.initialize());
