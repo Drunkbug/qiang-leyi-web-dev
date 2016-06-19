@@ -9,6 +9,7 @@
         .controller("EditWidgetController", EditWidgetController)
         .controller("WidgetFlikrSearchController", WidgetFlikrSearchController);
     var orderFlag = -1;
+
     function WidgetListController($sce, $routeParams, WidgetService) {
         var vm = this;
         vm.getTrustedHtml = getTrustedHtml;
@@ -23,8 +24,8 @@
                 .findWidgetsByPageId(vm.pid)
                 .then(function (res) {
                     vm.widgets = res.data;
-                    vm.widgets.sort(function(a, b){
-                        return a.order-b.order;
+                    vm.widgets.sort(function (a, b) {
+                        return a.order - b.order;
                     });
 
                     console.log(vm.widgets)
@@ -77,11 +78,11 @@
         init();
 
         function createWidget(widgetType) {
-            orderFlag+=1;
+            orderFlag += 1;
             var newWidget = {
                 _page: vm.pid,
                 widgetType: widgetType,
-                order:orderFlag
+                order: orderFlag
             };
             WidgetService
                 .createWidget(vm.pid, newWidget)
@@ -101,6 +102,8 @@
         vm.wgid = $routeParams.wgid;
         vm.deleteWidget = deleteWidget;
         vm.updateWidget = updateWidget;
+        vm.checkName = true;
+
         function init() {
             WidgetService
                 .findWidgetById(vm.wgid)
@@ -122,16 +125,23 @@
         }
 
         function updateWidget() {
-            WidgetService
-                .updateWidget(vm.wgid, vm.widget)
-                .then(function (res) {
-                    var result = res.status;
-                    if (result === 200) {
-                        Materialize.toast("Success", 1000);
-                    } else {
-                        Materialize.toast("Widget Not Found", 1000);
-                    }
-                });
+            if (vm.widget.name == "" || vm.widget.name == undefined) {
+                vm.checkName = false;
+                Materialize.toast("Name should not be empty", 1000);
+                $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + widget._id);
+            } else {
+                vm.checkName = true;
+                WidgetService
+                    .updateWidget(vm.wgid, vm.widget)
+                    .then(function (res) {
+                        var result = res.status;
+                        if (result === 200) {
+                            Materialize.toast("Success", 1000);
+                        } else {
+                            Materialize.toast("Widget Not Found", 1000);
+                        }
+                    });
+            }
 
         }
     }
@@ -157,15 +167,15 @@
             WidgetService
                 .searchPhotos(searchTest)
                 .then(function (res) {
-                    data = res.data.replace("jsonFlickrApi(","");
-                    data = data.substring(0,data.length - 1);
+                    data = res.data.replace("jsonFlickrApi(", "");
+                    data = data.substring(0, data.length - 1);
                     data = JSON.parse(data);
                     vm.photos = data.photos;
                 })
         }
 
         function addFlikrUrl(photo) {
-            vm.widget.url  = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server+"/" + photo.id + "_" + photo.secret + "_q.jpg";
+            vm.widget.url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_q.jpg";
             WidgetService
                 .updateWidget(vm.wgid, vm.widget)
                 .then(function (res) {

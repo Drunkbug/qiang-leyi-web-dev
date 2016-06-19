@@ -7,17 +7,25 @@
             <input ng-model="username" type="text" placeholder="username">
         </div>
         <div class="row">
+            <p class="pwd-fail" ng-show="!model.checkUsername">required</p>
         </div>
     </div>
     <div class="row">
         <div class="input-field col s12">
             <input ng-model="password" type="password" placeholder="password">
+            <div class="row">
+                <p class="pwd-fail" ng-show="!model.checkPwd">required</p>
+            </div>
         </div>
     </div>
     <div class="row">
-        <a ng-click="model.login(username, password)"  class="waves-effect waves-light btn teal lighten-2">Login</a>
+        <button type="submit" ng-click="model.login(username, password)"
+               class="waves-effect waves-light btn teal lighten-2">Login</button>
     </div>
     <div class="row">
         <a href="#/register" class="waves-effect waves-light btn red lighten-1">Register</a>
+    </div>
+    <div class="row">
+        <a  href="/auth/facebook" class="waves-effect waves-light btn teal lighten-2">Facebook</a>
     </div>
 </div>

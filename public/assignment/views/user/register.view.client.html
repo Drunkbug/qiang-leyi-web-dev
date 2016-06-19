@@ -8,24 +8,27 @@
             <input type="text" ng-model="username" placeholder="username">
         </div>
         <div class="row">
+            <p class="pwd-fail" ng-show="!model.checkUsername">required</p>
         </div>
     </div>
     <div class="row">
         <div class="input-field col s12">
             <input type="password" ng-model="pwd" placeholder="password">
         </div>
+        <div class="row">
+            <p class="pwd-fail" ng-show="!model.dupPwd">invalid</p>
+        </div>
     </div>
     <div class="row">
         <div class="input-field col s12">
             <input type="password" ng-model="cpwd" placeholder="confirm password">
         </div>
+        <div class="row">
+            <p class="pwd-fail" ng-show="!model.dupPwd">invalid</p>
+        </div>
     </div>
     <div class="row">
-        <p class="pwd-fail" ng-if="!(pwd===cpwd)">password not match</p>
-    </div>
-    <div class="row">
-        <button  ng-disabled="(!(pwd===cpwd))||(pwd==null)||(cpwd==null)"
-                 ng-click="model.checkDupUser(username, pwd)"
+        <button  ng-click="model.checkDupUser(username, pwd, cpwd)"
                  class="waves-effect waves-light btn teal lighten-2">Register</button>
     </div>
     <div class="row">

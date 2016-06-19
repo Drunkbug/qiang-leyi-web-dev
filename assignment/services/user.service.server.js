@@ -3,9 +3,10 @@
  */
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 var bcrypt = require("bcrypt-nodejs");
 
-module.exports = function(app, models) {
+module.exports = function (app, models) {
 
     var userModel = models.userModel;
 
@@ -15,13 +16,22 @@ module.exports = function(app, models) {
     //     {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
     //     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
     // ];
+
+
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/assignment/#/profile',
+            failureRedirect: '/assignment/#/login'
+        }));
+
+    app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
     app.post("/api/login", passport.authenticate('wam'), login);
     app.post("/api/register", register);
     app.post("/api/logout", logout);
     app.get("/api/loggedin", loggedin);
-    app.get("/api/user",getUsers);
-    app.get("/api/user/:userId",findUserById);
-    app.post("/api/user",createUser);
+    app.get("/api/user", getUsers);
+    app.get("/api/user/:userId", findUserById);
+    app.post("/api/user", createUser);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", authenticate, deleteUser);
 
@@ -29,8 +39,45 @@ module.exports = function(app, models) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
-    function authenticate(req, res) {
-        if(req.isAuthenticated()) {
+
+    var facebookConfig = {
+        clientID: process.env.FACEBOOK_CLIENT_ID,
+        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL: process.env.FACEBOOK_CALLBACK_URL
+    };
+
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+    function facebookStrategy(token, refreshToken, profile, done) {
+        var id = profile.id;
+        userModel
+            .findFacebookUser(id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var user = {
+                            username: profile.displayName.replace(/ /g, ''),
+                            facebook: {
+                                id: profile.id,
+                                displayName: profile.displayName
+                            }
+                        }
+                        return userModel
+                            .createUser(user);
+                    }
+                }
+            )
+            .then(
+                function (user) {
+                    return done(null, user);
+                }
+            );
+    }
+
+    function authenticate(req, res, next) {
+        if (req.isAuthenticated()) {
             next();
         } else {
             res.send(403);
@@ -40,20 +87,23 @@ module.exports = function(app, models) {
 
     function localStrategy(username, password, done) {
         userModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
-                function(user) {
-                    if(user && bcrypt.compareSync(password, user.password)) {
+                function (user) {
+                    if (user.username === username && bcrypt.compareSync(password, user.password)) {
                         return done(null, user);
                     } else {
                         return done(null, false);
                     }
                 },
-                function(err) {
-                    if (err) { return done(err); }
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
                 }
             );
     }
+
     function serializeUser(user, done) {
         done(null, user);
     }
@@ -62,10 +112,10 @@ module.exports = function(app, models) {
         userModel
             .findUserById(user._id)
             .then(
-                function(user){
+                function (user) {
                     done(null, user);
                 },
-                function(err){
+                function (err) {
                     done(err, null);
                 }
             );
@@ -77,8 +127,8 @@ module.exports = function(app, models) {
         userModel
             .findUserByUsername(username)
             .then(
-                function(user) {
-                    if(user.length != 0) {
+                function (user) {
+                    if (user) {
                         res.status(400).send("Username already exist");
                         return;
                     } else {
@@ -89,15 +139,15 @@ module.exports = function(app, models) {
                     // console.log("aaa"+user);
                     // res.sendStatus(200);
                 },
-                function(err) {
+                function (err) {
                     res.status(400).send(err);
                 }
             )
             .then(
-                function(user) {
-                    if(user){
-                        req.login(user, function(err) {
-                            if(err) {
+                function (user) {
+                    if (user) {
+                        req.login(user, function (err) {
+                            if (err) {
                                 res.status(400).send(err);
                             } else {
                                 res.json(user);
@@ -119,11 +169,11 @@ module.exports = function(app, models) {
 
     function logout(req, res) {
         req.logout();
-        res.send(200);
+        res.sendStatus(200);
     }
 
     function loggedin(req, res) {
-        if(req.isAuthenticated()) {
+        if (req.isAuthenticated()) {
             res.json(req.user);
         } else {
             res.send('0');
@@ -133,7 +183,7 @@ module.exports = function(app, models) {
     function getUsers(req, res) {
         var username = req.query["username"];
         var password = req.query["password"];
-        if(username && password) {
+        if (username && password) {
             findUserByCredentials(username, password, req, res);
         } else if (username) {
             findUserByUsername(username, req, res);
@@ -147,7 +197,7 @@ module.exports = function(app, models) {
         userModel
             .findUserByCredentials(username, password)
             .then(
-                function(user) {
+                function (user) {
                     res.json(user);
                 },
                 function (err) {
@@ -217,7 +267,7 @@ module.exports = function(app, models) {
                 function (user) {
                     res.json(user);
                 },
-                function(err) {
+                function (err) {
                     res.status(400).send("Illegal Username");
                 }
             );
@@ -230,11 +280,11 @@ module.exports = function(app, models) {
         userModel
             .updateUser(id, newUser)
             .then(function (user) {
-                res.sendStatus(200);
-            },
-            function (err) {
-                res.status(404).send("Unable to update User")
-            });
+                    res.json(newUser);
+                },
+                function (err) {
+                    res.status(404).send("Unable to update User")
+                });
         // var flag = false;
         // for (var i in users) {
         //     if(users[i]._id == id) {
@@ -255,13 +305,13 @@ module.exports = function(app, models) {
         var id = req.params.userId;
         userModel
             .deleteUser(id)
-            .then(function(status) {
-                res.sendStatus(200);
-            },
-            function (err) {
-                res.status(404).send("Unable to remove user");
+            .then(function (status) {
+                    res.sendStatus(200);
+                },
+                function (err) {
+                    res.status(404).send("Unable to remove user");
 
-            });
+                });
         // for (var i in users) {
         //     if (users[i].id === id) {
         //         users.splice(i,1);

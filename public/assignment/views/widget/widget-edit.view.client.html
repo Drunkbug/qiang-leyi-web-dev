@@ -7,7 +7,7 @@
         <a href="" class="brand-logo left brand-title">
             Edit Widget
         </a>
-        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"
+        <a
            ng-click="model.updateWidget()">
             <i class="material-icons right">done</i>
         </a>
@@ -23,6 +23,9 @@
                     <div class="input-field col s12">
                         <input ng-model="model.widget.name" id="first_name" type="text" class="validate">
                         <label class="active" for="first_name">Name</label>
+                        <div class="row">
+                            <p class="pwd-fail" ng-show="!model.checkName">required</p>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -66,6 +69,9 @@
                 <div class="input-field col s12">
                     <input ng-model="model.widget.name" id="name" type="text" class="validate">
                     <label class="active" for="first_name">Name</label>
+                    <div class="row">
+                        <p class="pwd-fail" ng-show="!model.checkName">required</p>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -124,6 +130,9 @@
                 <div class="input-field col s12">
                     <input ng-model="model.widget.name" id="first_name2" type="text" class="validate">
                     <label class="active" for="first_name">Name</label>
+                    <div class="row">
+                        <p class="pwd-fail" ng-show="!model.checkName">required</p>
+                    </div>
                 </div>
             </div>
             <div class="row">

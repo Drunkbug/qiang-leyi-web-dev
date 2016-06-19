@@ -20,6 +20,9 @@
                     <input ng-model="model.website.name" placeholder="name" id="first_name" type="text" class="validate">
                     <label  class = "active" for="first_name">Application Name</label>
                 </div>
+                <div class="row">
+                    <p class="pwd-fail" ng-show="!model.checkName">required</p>
+                </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">

@@ -20,6 +20,14 @@
                 controller:"RegisterController",
                 controllerAs:"model"
             })
+            .when("/profile", {
+                templateUrl: "views/user/profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs:"model",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            })
             .when("/profile/:id", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",

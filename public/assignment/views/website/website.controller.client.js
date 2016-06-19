@@ -14,6 +14,7 @@
         vm.websiteId = $routeParams.websiteId;
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
+        vm.checkName = true;
 
         function init() {
             WebsiteService
@@ -25,17 +26,24 @@
         init();
  
         function updateWebsite() {
-            WebsiteService
-                .updateWebsite(vm.websiteId, vm.website)
-                .then(function (res) {
-                    var result = res.status;
-                    if(result === 200) {
-                        Materialize.toast("Success", 1000);
-                        $location.url("/user/"+vm.uid+"/website")
-                    } else {
-                        Materialize.toast("Website Not Found", 1000);
-                    }
-                });
+            if(vm.website.name == "" || vm.website.name == undefined) {
+                vm.checkName = false;
+                Materialize.toast("Name should not be empty", 1000);
+
+            } else {
+                vm.checkName = true;
+                WebsiteService
+                    .updateWebsite(vm.websiteId, vm.website)
+                    .then(function (res) {
+                        var result = res.status;
+                        if (result === 200) {
+                            Materialize.toast("Success", 1000);
+                            $location.url("/user/" + vm.uid + "/website")
+                        } else {
+                            Materialize.toast("Website Not Found", 1000);
+                        }
+                    });
+            }
         }
 
         function deleteWebsite() {
@@ -67,6 +75,7 @@
         var vm = this;
         vm.uid = $routeParams.uid;
         vm.createWebsite  = createWebsite;
+        vm.checkName = true;
         function init() {
             WebsiteService
                 .findWebsitesForUser(vm.uid)
@@ -77,21 +86,28 @@
         init();
 
         function createWebsite(name, description) {
-            var newWebsite = {
-                name: name,
-                developerId: vm.uid,
-                description: description
-            };
-            WebsiteService
-                .createWebsite(vm.uid, newWebsite)
-                .then(function (res) {
-                    var newWebsite = res.data;
-                    Materialize.toast("Success", 1000);
-                    $location.url("/user/"+vm.uid+"/website")
-                },
-                function(err){
-                    Materialize.toast("Unable to add Website", 1000);
-                });
+            if(name == "" || name == undefined) {
+                vm.checkName = false;
+                Materialize.toast("Name should not be empty", 1000);
+
+            } else {
+                vm.checkName = true;
+                var newWebsite = {
+                    name: name,
+                    developerId: vm.uid,
+                    description: description
+                };
+                WebsiteService
+                    .createWebsite(vm.uid, newWebsite)
+                    .then(function (res) {
+                            var newWebsite = res.data;
+                            Materialize.toast("Success", 1000);
+                            $location.url("/user/" + vm.uid + "/website")
+                        },
+                        function (err) {
+                            Materialize.toast("Unable to add Website", 1000);
+                        });
+            }
         }
         
     }

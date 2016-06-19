@@ -15,13 +15,13 @@
         vm.deleteUser = deleteUser;
         vm.logout = logout;
         var id = $routeParams["id"];
+        vm.user = $rootScope.currentUser;
 
         function init() {
-            UserService
-                .findUserById(id)
-                .then(function (res) {
-                    vm.user = res.data;
-                });
+            // UserService
+            //     .findUserById(id)
+            //     .then(function (res) {
+            //     });
         }
 
         init();
@@ -58,10 +58,10 @@
             UserService
                 .logout()
                 .then(
-                    function() {
+                    function () {
                         $location.url("/login");
                     },
-                    function() {
+                    function () {
                         $location.url("/login");
                     }
                 );
@@ -72,42 +72,87 @@
 
         var vm = this;
         vm.login = Login;
+        vm.checkUsername = true;
+        vm.checkPwd = true;
         function Login(username, password) {
-            UserService
-                .login(username, password)
-                .then(function (res) {
-                    var user = res.data;
-                    if (user) {
-                        var id = user._id;
-                        $location.url("/profile/" + id);
-                    } else {
-                        Materialize.toast("User Not Found", 1000);
-                    }
-                });
+            if ((username == "" || username == undefined) && (password == "" || password == undefined)) {
+                Materialize.toast("invalid username and password", 1000);
+                $location.url("/login");
+                vm.checkUsername = false;
+                vm.checkPwd = false;
+
+            }
+            else if (username == "" || username == undefined) {
+                Materialize.toast("invalid username", 1000);
+                $location.url("/login");
+                vm.checkUsername = false;
+                vm.checkPwd = true;
+            }
+            else if (password == "" || password == undefined) {
+                Materialize.toast("invalid password", 1000);
+                $location.url("/login");
+                vm.checkPwd = false;
+                vm.checkUsername = true;
+            } else {
+                vm.checkUsername = true;
+                vm.checkPwd = true;
+                UserService
+                    .login(username, password)
+                    .then(function (res) {
+                        var user = res.data;
+                        if (user) {
+                            var id = user._id;
+                            $location.url("/profile/" + id);
+                        } else {
+                            Materialize.toast("User Not Found", 1000);
+                        }
+                    });
+            }
         }
     }
 
     function RegisterController($location, $rootScope, UserService) {
         var vm = this;
         vm.checkDupUser = checkDupUser;
-        function checkDupUser(username, password) {
+        vm.checkUsername = true;
+        vm.dupPwd = true;
+        function checkDupUser(username, password, cpwd) {
             var newUser = {
                 username: username,
                 password: password,
                 firstname: "",
                 lastName: ""
             };
-            UserService
-                .register(newUser)
-                .then(function (res) {
-                        var user = res.data;
-                        $rootScope.currentUser = user;
-                        $location.url("/profile/" + res.data._id);
-                    },
-                    function (err) {
-                        $location.url("/register/");
-                        Materialize.toast("Illegal username", 1000);
-                    });
+            if ((username == "" || username == undefined)
+                && ((password == "" || password == undefined)
+                || (password != cpwd))) {
+                vm.checkUsername = false;
+                vm.dupPwd = false;
+                Materialize.toast("invalid username and password", 1000);
+            } else if((username == "" || username == undefined)) {
+                vm.checkUsername = false;
+                vm.dupPwd = true;
+                Materialize.toast("invalid username", 1000);
+            } else if((password == "" || password == undefined)
+                || (password != cpwd)) {
+                vm.checkUsername = true;
+                vm.dupPwd = false;
+                Materialize.toast("invalid password", 1000);
+            } else {
+                vm.checkUsername = true;
+                vm.dupPwd = true;
+                UserService
+                    .register(newUser)
+                    .then(function (res) {
+                            var user = res.data;
+                            $rootScope.currentUser = user;
+                            $location.url("/profile/" + res.data._id);
+                        },
+                        function (err) {
+                            $location.url("/register/");
+                            Materialize.toast("Illegal username", 1000);
+                        });
+            }
             // UserService
             //     .findUserByUsername(username)
             //     .then(function (res){

@@ -10,6 +10,13 @@ module.exports = function () {
         password: String,
         firstName: String,
         lastName: String,
+        facebook: {
+            id: String,
+            displayName: String
+        },
+        google: {
+            id: String,
+        },
         email: String,
         phone: String,
         websites: {type: mongoose.Schema.Types.ObjectId, ref: 'Website'},
