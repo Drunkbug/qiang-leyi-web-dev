@@ -1,19 +1,21 @@
 /**
  * Created by leyiqiang on 5/29/16.
  */
-(function(){
+(function () {
     angular
         .module("WebAppMaker")
         .controller("LoginController", LoginController)
         .controller("ProfileController", ProfileController)
         .controller("RegisterController", RegisterController);
-    
 
-    function ProfileController($location, $routeParams, UserService) {
+
+    function ProfileController($location, $rootScope, $routeParams, UserService) {
         var vm = this;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
+        vm.logout = logout;
         var id = $routeParams["id"];
+
         function init() {
             UserService
                 .findUserById(id)
@@ -21,14 +23,15 @@
                     vm.user = res.data;
                 });
         }
+
         init();
 
 
         function updateUser() {
             UserService
                 .updateUser(vm.user._id, vm.user)
-                .then(function(res){
-                    if(res.status === 200) {
+                .then(function (res) {
+                    if (res.status === 200) {
                         Materialize.toast("Success", 1000);
                     } else {
                         Materialize.toast("User Not Found", 1000);
@@ -40,7 +43,7 @@
             UserService
                 .deleteUser(vm.user._id)
                 .then(function (res) {
-                    if(res.status === 200) {
+                    if (res.status === 200) {
                         Materialize.toast("Successfully Deleted", 1000);
                         $location.url("/login")
                     } else {
@@ -48,19 +51,35 @@
                     }
                 });
         }
+
+
+        function logout() {
+            $rootScope.currentUser = null;
+            UserService
+                .logout()
+                .then(
+                    function() {
+                        $location.url("/login");
+                    },
+                    function() {
+                        $location.url("/login");
+                    }
+                );
+        }
     }
+
     function LoginController($location, UserService) {
 
         var vm = this;
-        vm.login =  Login;
+        vm.login = Login;
         function Login(username, password) {
             UserService
-                .findUserByUsernameAndPassword(username,password)
+                .login(username, password)
                 .then(function (res) {
                     var user = res.data;
                     if (user) {
                         var id = user._id;
-                        $location.url("/profile/"+id);
+                        $location.url("/profile/" + id);
                     } else {
                         Materialize.toast("User Not Found", 1000);
                     }
@@ -68,32 +87,49 @@
         }
     }
 
-    function RegisterController($location, UserService) {
+    function RegisterController($location, $rootScope, UserService) {
         var vm = this;
         vm.checkDupUser = checkDupUser;
-        function checkDupUser(username, password){
+        function checkDupUser(username, password) {
+            var newUser = {
+                username: username,
+                password: password,
+                firstname: "",
+                lastName: ""
+            };
             UserService
-                .findUserByUsername(username)
-                .then(function (res){
-                    var user = res.data;
-                    if(user!= ""|| username == null || username=="" ) {
+                .register(newUser)
+                .then(function (res) {
+                        var user = res.data;
+                        $rootScope.currentUser = user;
+                        $location.url("/profile/" + res.data._id);
+                    },
+                    function (err) {
                         $location.url("/register/");
                         Materialize.toast("Illegal username", 1000);
-                    } else {
-                        var newUser =  {
-                            username:username,
-                            password:password,
-                            firstname:"",
-                            lastName:""
-                        };
-                        UserService
-                            .createUser(newUser)
-                            .then(function(res) {
-                                $location.url("/profile/"+res.data._id);
-                            });
-
-                    }
-                });
+                    });
+            // UserService
+            //     .findUserByUsername(username)
+            //     .then(function (res){
+            //         var user = res.data;
+            //         if(user!= ""|| username == null || username=="" ) {
+            //             $location.url("/register/");
+            //             Materialize.toast("Illegal username", 1000);
+            //         } else {
+            //             var newUser =  {
+            //                 username:username,
+            //                 password:password,
+            //                 firstname:"",
+            //                 lastName:""
+            //             };
+            //             UserService
+            //                 .register(newUser)
+            //                 .then(function(res) {
+            //                     $location.url("/profile/"+res.data._id);
+            //                 });
+            //
+            //         }
+            //     });
 
         }
     }

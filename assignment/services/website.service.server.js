@@ -39,6 +39,7 @@ module.exports = function(app, models) {
 
     function findWebsitesForUser(req, res) {
         var userId = req.params.userId;
+        console.log(req.session.currentUser);
         websiteModel
             .findWebsitesForUser(userId)
             .then(
