@@ -11,8 +11,8 @@ var passport = require('passport');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-var secret = "MySecret";
+app.use(cookieParser());
+var secret = "mysecret";
 
 
 
@@ -20,7 +20,7 @@ if(process.env.SESSION_SECRET) {
     secret = process.env.SESSION_SECRET
 }
 
-app.use(cookieParser());
+
 app.use(session({ secret: secret }));
 
 
