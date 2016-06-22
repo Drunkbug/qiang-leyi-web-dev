@@ -2,7 +2,6 @@
  * Created by leyiqiang on 6/6/16.
  */
 module.exports = function (app) {
-    var wills = [{},{}];
 
     // app.get("/api/project/user",getUsers);
     //

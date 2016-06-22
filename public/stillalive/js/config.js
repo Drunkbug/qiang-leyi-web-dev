@@ -1,7 +1,7 @@
 /**
  * Created by leyiqiang on 6/5/16.
  */
-(function() {
+(function () {
     angular.module("StillAliveAppMaker")
         .config(Config);
 
@@ -11,60 +11,88 @@
             .when("/main", {
                 templateUrl: "views/user/main.view.client.html",
                 controller: "MainController",
-                controllerAs:"model"
+                controllerAs: "model"
             })
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",
                 controller: "LoginController",
-                controllerAs:"model"
+                controllerAs: "model"
             })
             .when("/register", {
                 templateUrl: "views/user/register.view.client.html",
-                controller:"RegisterController",
-                controllerAs:"model"
+                controller: "RegisterController",
+                controllerAs: "model"
+            })
+            .when("/profile", {
+                templateUrl: "views/user/profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
             })
             .when("/profile/:id", {
-                templateUrl: "views/profile/profile.view.client.html",
+                templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
-                controllerAs:"model"
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
             })
-            .when("/profile/:id/connection", {
-                templateUrl: "views/profile/connection.view.client.html",
-                controller: "ConnectionController",
-                controllerAs:"model"
-            })
-            .when("/profile/:id/setting", {
-                templateUrl: "views/profile/setting.view.client.html",
-                controller: "SettingController",
-                controllerAs:"model"
-            })
-            .when("/profile/:id/will", {
+            .when("/user/:id/will", {
                 templateUrl: "views/will/will-list.view.client.html",
                 controller: "WillListController",
-                controllerAs:"model"
+                controllerAs: "model"
             })
-            .when("/profile/:id/will/:wid", {
+            .when("/user/:id/will/:wid", {
                 templateUrl: "views/will/edit-will.view.client.html",
                 controller: "EditWillController",
-                controllerAs:"model"
+                controllerAs: "model"
             })
             .when("/admin", {
                 templateUrl: "views/admin/login.view.admin.html",
                 controller: "AdminLoginController",
-                controllerAs:"model"
+                controllerAs: "model"
             })
             .when("/admin/:aid", {
                 templateUrl: "views/admin/client-list.view.admin.html",
                 controller: "ClientListController",
-                controllerAs:"model"
+                controllerAs: "model"
             })
             .when("/admin/:aid/client/:cid", {
                 templateUrl: "views/admin/client-info.view.admin.html",
                 controller: "ClientInfoController",
-                controllerAs:"model"
+                controllerAs: "model"
             })
             .otherwise({
-                redirectTo:"/main"
+                redirectTo: "/main"
             });
+
+        function checkLoggedin(UserService, $q, $location, $rootScope) {
+            var deferred = $q.defer();
+
+
+            UserService
+                .checkLoggedin()
+                .then(
+                    function (res) {
+                        var user = res.data;
+                        if (user == '') {
+                            deferred.reject();
+                            $rootScope.currentUser = null;
+                            $location.url("/main");
+                        } else {
+                            $rootScope.currentUser = user;
+                            deferred.resolve();
+                        }
+                    },
+                    function (err) {
+                        $rootScope.currentUser = null;
+                        deferred.reject();
+                        $location.url("/main");
+                    }
+                );
+            return deferred.promise;
+        }
     }
 })();

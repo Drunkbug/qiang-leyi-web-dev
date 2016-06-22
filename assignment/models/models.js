@@ -14,7 +14,7 @@ module.exports = function () {
             process.env.OPENSHIFT_APP_NAME;
     }
 
-    mongoose.connect(connectionString);
+    mongoose.createConnection(connectionString);
 
 
     // var mongoose = require('mongoose');

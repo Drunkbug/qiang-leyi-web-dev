@@ -34,6 +34,7 @@ module.exports = function (app, models) {
         var userId        = req.body.userId;
         var width         = req.body.width;
         var myFile        = req.file;
+        console.log(req.body)
         if(myFile == null) {
             res.redirect("/assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
             return;
@@ -44,12 +45,27 @@ module.exports = function (app, models) {
         var destination   = myFile.destination;  // folder where file is saved to
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
-        for (var i in widgets) {
-            if(widgets[i]._id == widgetId) {
-                widgets[i].url = "/uploads/"+filename;
-            }
-        }
-        res.redirect("/assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+
+        var widgetHolder;
+        widgetModel
+            .findWidgetById(widgetId)
+            .then(
+                function(widget) {
+                    widgetHolder = JSON.parse(JSON.stringify(widget));
+                    widgetHolder.url = "/uploads/"+filename;
+
+                    widgetModel
+                        .updateWidget(widgetId, widgetHolder)
+                        .then(
+                            function (widget) {
+                                res.redirect("/assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+                            },
+                            function (err) {
+                                res.statusCode(400);
+                            }
+                        )
+                }
+            )
 
     }
 

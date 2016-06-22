@@ -63,7 +63,7 @@ module.exports = function (app, models) {
                                 id: profile.id,
                                 displayName: profile.displayName
                             }
-                        }
+                        };
                         return userModel
                             .createUser(user);
                     }

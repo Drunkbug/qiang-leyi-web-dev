@@ -6,102 +6,173 @@
         .module("StillAliveAppMaker")
         .controller("MainController", MainController)
         .controller("LoginController", LoginController)
-        .controller("RegisterController", RegisterController);
+        .controller("RegisterController", RegisterController)
+        .controller("ProfileController", ProfileController);
 
     function MainController($routeParams, UserService) {
 
     }
 
-    function LoginController($location, UserService) {
-
+    function ProfileController($location, $rootScope, $routeParams, UserService) {
         var vm = this;
-        vm.login =  Login;
+        vm.updateUser = updateUser;
+        vm.deleteUser = deleteUser;
+        vm.logout = logout;
+        var id = $routeParams["id"];
+        vm.user = $rootScope.currentUser;
 
         function init() {
             toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-bottom-full-width",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "1000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
+                "positionClass": "toast-bottom-full-width"
             };
+            UserService
+                .findUserById(id)
+                .then(function (res) {
+                    vm.user = res.data;
+                });
         }
 
         init();
-        function Login(username, password, $routeParams) {
+
+
+        function updateUser() {
             UserService
-                .findUserByUsernameAndPassword(username,password)
+                .updateUser(vm.user._id, vm.user)
                 .then(function (res) {
-                    var user = res.data;
-                    if (user) {
-                        var id = user._id;
-                        $location.url("/profile/"+id);
+                    if (res.status === 200) {
+                        toastr.success("Success");
                     } else {
-                        toastr.error('User Not Found');
+                        toastr.error("User Not Found");
                     }
                 });
+        }
+
+        function deleteUser() {
+            UserService
+                .deleteUser(vm.user._id)
+                .then(function (res) {
+                    if (res.status === 200) {
+                        toastr.success("Successfully Deleted");
+                        $location.url("/login")
+                    } else {
+                        toastr.error("Unable to delete user");
+                    }
+                });
+        }
+
+
+        function logout() {
+            $rootScope.currentUser = null;
+            UserService
+                .logout()
+                .then(
+                    function () {
+                        $location.url("/login");
+                    },
+                    function () {
+                        $location.url("/login");
+                    }
+                );
         }
     }
 
-    function RegisterController($location, UserService) {
+    function LoginController($location, $rootScope, UserService) {
         var vm = this;
-        vm.checkDupUser = checkDupUser;
+        vm.login = Login;
+        vm.checkUsername = true;
+        vm.checkPwd = true;
         function init() {
             toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-bottom-full-width",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "1000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
+                "positionClass": "toast-bottom-full-width"
+            };
+        }
+        init();
+        function Login(username, password) {
+            if ((username == "" || username == undefined) && (password == "" || password == undefined)) {
+                toastr.error("invalid username and password");
+                $location.url("/login");
+                vm.checkUsername = false;
+                vm.checkPwd = false;
+
+            }
+            else if (username == "" || username == undefined) {
+                toastr.error("invalid username");
+                $location.url("/login");
+                vm.checkUsername = false;
+                vm.checkPwd = true;
+            }
+            else if (password == "" || password == undefined) {
+                toastr.error("invalid password");
+                $location.url("/login");
+                vm.checkPwd = false;
+                vm.checkUsername = true;
+            } else {
+                vm.checkUsername = true;
+                vm.checkPwd = true;
+                UserService
+                    .login(username, password)
+                    .then(function (res) {
+                        var user = res.data;
+                        if (user) {
+                            var id = user._id;
+                            $location.url("/profile/" + id);
+                        } else {
+                            toastr.error("User Not Found");
+                        }
+                    });
+            }
+        }
+    }
+
+    function RegisterController($location, $rootScope, UserService) {
+        var vm = this;
+        vm.checkDupUser = checkDupUser;
+        vm.checkUsername = true;
+        vm.dupPwd = true;
+        function init() {
+            toastr.options = {
+                "positionClass": "toast-bottom-full-width"
             };
         }
 
         init();
-
-        function checkDupUser(username, password){
-            UserService
-                .findUserByUsername(username)
-                .then(function (res){
-                    var user = res.data;
-                    if(user != null || username == null || username=="") {
-                        $location.url("/register/");
-                        toastr.error("Illegal username, password");
-                    } else {
-                        var newUser =  {
-                            _id:(new Date()).getTime(),
-                            username:username,
-                            password:password,
-                            firstname:"",
-                            lastName:"",
-                        };
-                        UserService
-                            .createUser(newUser)
-                            .then(function(res) {
-                                $location.url("/profile/"+newUser._id);
-                            });
-
-                    }
-                });
+        function checkDupUser(username, password, cpwd) {
+            var newUser = {
+                username: username,
+                password: password,
+                firstname: "",
+                lastName: ""
+            };
+            if ((username == "" || username == undefined)
+                && ((password == "" || password == undefined)
+                || (password != cpwd))) {
+                vm.checkUsername = false;
+                vm.dupPwd = false;
+                toastr.error("invalid username and password");
+            } else if((username == "" || username == undefined)) {
+                vm.checkUsername = false;
+                vm.dupPwd = true;
+                toastr.error("invalid username");
+            } else if((password == "" || password == undefined)
+                || (password != cpwd)) {
+                vm.checkUsername = true;
+                vm.dupPwd = false;
+                toastr.error("invalid password");
+            } else {
+                vm.checkUsername = true;
+                vm.dupPwd = true;
+                UserService
+                    .register(newUser)
+                    .then(function (res) {
+                            var user = res.data;
+                            $rootScope.currentUser = user;
+                            $location.url("/profile/" + res.data._id);
+                        },
+                        function (err) {
+                            $location.url("/register/");
+                            toastr.error("Illegal username");
+                        });
+            }
 
         }
     }

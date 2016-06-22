@@ -1,0 +1,65 @@
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header text-center">
+                <a class="navbar-brand">Profile</a>
+            </div>
+        </div>
+
+    </nav>
+
+    <div class="container body-container">
+        <form>
+            <div class="row">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" value="{{model.user.username}}" disabled>
+                </div>
+            </div>
+            <div class="row name">
+                <div class="form-group col-xs-6">
+                    <label for="firstname">Firstname</label>
+                    <input type="text" class="form-control" id="firstname" value="{{model.user.firstname}}">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label for="lastname">Lastname</label>
+                    <input type="text" class="form-control" id="lastname" value="{{model.user.lastname}}">
+                </div>
+            </div>
+            <div class="row">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" value="{{model.user.email}}">
+            </div>
+            <div class="row">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" id="phone" value="{{model.user.phone}}">
+            </div>
+            <div class="row name">
+                <div class="form-group col-xs-6">
+                    <label for="ec">EmergencyContact</label>
+                    <input type="text" class="form-control" id="ec" value="{{model.user.emergencyContact}}">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label for="ep">EmergencyPhone</label>
+                    <input type="text" class="form-control" id="ep" value="{{model.user.emergencyPhone}}">
+                </div>
+            </div>
+            <div class="row">
+                <a ng-click="model.updateUser()" type="button" class="btn btn-info btn-block">Update</a>
+            </div>
+            <div class="row">
+                <a href="#/user/{{model.user._id}}/will" type="button" class="btn btn-primary btn-block">Confirm</a>
+            </div>
+            <div class="row">
+                <button ng-click = "model.logout()" type="button" class="btn btn-danger btn-block">Logout</button>
+            </div>
+        </form>
+    </div>
+
+
+    <footer class="footer navbar-fixed-bottom">
+        <div class="container">
+            <p class="text-muted">blaj</p>
+        </div>
+    </footer>
+</div>

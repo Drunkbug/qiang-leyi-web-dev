@@ -4,18 +4,20 @@
 /*#666*/
 /*#2E2D2E*/
 
-html, body, .ng-scope, .container-fluid {
+html, body, .ng-wrapper, .container-fluid {
+    margin:0;
+    padding: 0;
     height:100%;
+
+}
+.container-fluid-bg {
+    width: 100%;
+    padding: 0;
     background: url(../imgs/blur-bg2.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
-.container-fluid {
-    position: relative;
-    width: 100%;
-    padding: 0;
 }
 a:hover {
     text-decoration: none;
@@ -39,11 +41,6 @@ a:hover {
     background-color: #ED6152;
     border: none;
 }
-.container {
-    padding-top: 20px;
-    padding-left: 30px;
-    padding-right: 30px;
-}
 
 div.main-top {
     height: 100%;
@@ -66,6 +63,7 @@ div.main-title {
     margin: auto;
     width:50%;
     height: 30%;
+    top:250px;
 }
 p.main-title {
     font-size: 1.4em;
@@ -189,49 +187,30 @@ input {
  }
 
 /* for profile page*/
-main {
-    padding: 15px;
-}
-.navbar-default {
-    margin: 0;
-    background-color: transparent;
-    border:none;
-    border-bottom: 2px solid white;
-    /*background-color: rgba(255,255,255,0.4);*/
+.footer {
+    background-color: #F3F3F3;
+    width: 100%;
+    height: 60px;
 
 }
-
-.navbar-brand {
-    color:white !important;
-}
-
-.navbar-greet{
-
-}
-.navbar-logout a{
-    color:#333;
-    font-weight: 400;
-}
-.profile-top-fill {
-    height: 150px;
-}
-.col-profile {
-    min-height: 300px;
-}
-.card-block-top {
+.navbar {
     border: none;
-    border-bottom: 2px solid white;
+    background-color: #F3F3F3;
 }
-.card-text-top span.card-title{
-    font-size: 1.5em;
+.navbar-brand
+{
+    color: black !important;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin:0 auto;
 }
-.card-text-top span{
-    font-size: 2.5em;
-    color: white;
+.body-container {
+    margin-top:80px;
+    margin-bottom: 80px;
+    clear: both;
 }
-
-.card-text-bot {
-    color: white;
-    font-size: 1.1em;
+.name div.col-xs-6 {
+    padding: 0;
 }
-

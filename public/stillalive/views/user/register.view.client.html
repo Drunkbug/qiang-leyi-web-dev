@@ -1,4 +1,4 @@
-<div class="container-fluid login-container-fluid">
+<div class="container-fluid login-container-fluid container-fluid-bg">
     <div class="login-container row">
         <div class="row">
             <p class="login-title">Let's Get Started</p>
@@ -16,22 +16,15 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <span class="pwd-fail" ng-if="!(password===cpassword)">*</span><input ng-model="cpassword" type="password" class="form-control" id="cpwd" placeholder="Confirm Password">
+                <span class="pwd-fail" ng-if="!(password===cpassword)">*</span><input ng-model="cpwd" type="password" class="form-control" id="cpwd" placeholder="Confirm Password">
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
-            <button ng-click="model.checkDupUser(username, password)"
+            <button ng-click="model.checkDupUser(username, password, cpwd)"
                      class="outline btn btn-default login-btn">Register</button>
             </div>
         </div>
-        <!--<div class="row">-->
-            <!--<div class="col-xs-12 col-sm-12 col-md-12">-->
-                <!--<a ng-click="model.checkDupUser(username, password)">-->
-                    <!--<button type="submit" class="outline btn btn-default login-btn">Register</button>-->
-                <!--</a>-->
-            <!--</div>-->
-        <!--</div>-->
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <p class="login-message">Already have account? <a href="#login">Login</a></p></div>
